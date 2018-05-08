@@ -17,19 +17,19 @@ namespace MechForge
     public partial class Form1 : Form
     {
         private string directory;
+        private const string DEFAULT_DIR = "D:\\SteamLibrary\\steamapps\\common\\BATTLETECH\\BattleTech_Data\\StreamingAssets\\data\\mech";
 
 
         public Form1()
         {
             InitializeComponent();
+            FolderTextBox.Text = DEFAULT_DIR;
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            string path = FolderTextBox.Text;
-            directory = "D:\\SteamLibrary\\steamapps\\common\\BATTLETECH\\BattleTech_Data\\StreamingAssets\\data\\mech";
-
-            Debug.WriteLine(directory);
+            directory = FolderTextBox.Text;
+            
             DirectoryInfo di = new DirectoryInfo(directory);
 
             List<FileInfo> filenames = new List<FileInfo>();
@@ -52,9 +52,7 @@ namespace MechForge
         private void FileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            string filename = FileListBox.Text;
-
-            
+            string filename = FileListBox.Text;          
 
             string text = File.ReadAllText($"{directory}\\{filename}");
 
