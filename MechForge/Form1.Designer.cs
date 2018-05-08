@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.FolderTextBox = new System.Windows.Forms.TextBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.FileListBox = new System.Windows.Forms.ListBox();
-            this.editorTextBox = new System.Windows.Forms.TextBox();
+            this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // FolderTextBox
@@ -60,26 +63,49 @@
             this.FileListBox.TabIndex = 2;
             this.FileListBox.SelectedIndexChanged += new System.EventHandler(this.FileListBox_SelectedIndexChanged);
             // 
-            // editorTextBox
+            // fastColoredTextBox1
             // 
-            this.editorTextBox.Location = new System.Drawing.Point(376, 90);
-            this.editorTextBox.Multiline = true;
-            this.editorTextBox.Name = "editorTextBox";
-            this.editorTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.editorTextBox.Size = new System.Drawing.Size(994, 524);
-            this.editorTextBox.TabIndex = 3;
+            this.fastColoredTextBox1.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(179, 14);
+            this.fastColoredTextBox1.BackBrush = null;
+            this.fastColoredTextBox1.CharHeight = 14;
+            this.fastColoredTextBox1.CharWidth = 8;
+            this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.fastColoredTextBox1.IsReplaceMode = false;
+            this.fastColoredTextBox1.Location = new System.Drawing.Point(376, 90);
+            this.fastColoredTextBox1.Name = "fastColoredTextBox1";
+            this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
+            this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(994, 524);
+            this.fastColoredTextBox1.TabIndex = 4;
+            this.fastColoredTextBox1.Text = "fastColoredTextBox1";
+            this.fastColoredTextBox1.Zoom = 100;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1413, 673);
-            this.Controls.Add(this.editorTextBox);
+            this.Controls.Add(this.fastColoredTextBox1);
             this.Controls.Add(this.FileListBox);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.FolderTextBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,7 +116,7 @@
         private System.Windows.Forms.TextBox FolderTextBox;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.ListBox FileListBox;
-        private System.Windows.Forms.TextBox editorTextBox;
+        private FastColoredTextBoxNS.FastColoredTextBox fastColoredTextBox1;
     }
 }
 
