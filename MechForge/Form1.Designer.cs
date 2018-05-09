@@ -34,7 +34,15 @@
             this.LoadButton = new System.Windows.Forms.Button();
             this.FileListBox = new System.Windows.Forms.ListBox();
             this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.EditorTab = new System.Windows.Forms.TabControl();
+            this.CodeTab = new System.Windows.Forms.TabPage();
+            this.DesignerTab = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
+            this.EditorTab.SuspendLayout();
+            this.CodeTab.SuspendLayout();
+            this.DesignerTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // FolderTextBox
@@ -57,9 +65,9 @@
             // FileListBox
             // 
             this.FileListBox.FormattingEnabled = true;
-            this.FileListBox.Location = new System.Drawing.Point(45, 90);
+            this.FileListBox.Location = new System.Drawing.Point(45, 103);
             this.FileListBox.Name = "FileListBox";
-            this.FileListBox.Size = new System.Drawing.Size(306, 524);
+            this.FileListBox.Size = new System.Drawing.Size(306, 511);
             this.FileListBox.TabIndex = 2;
             this.FileListBox.SelectedIndexChanged += new System.EventHandler(this.FileListBox_SelectedIndexChanged);
             // 
@@ -84,28 +92,85 @@
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
-            this.fastColoredTextBox1.Location = new System.Drawing.Point(376, 90);
+            this.fastColoredTextBox1.Location = new System.Drawing.Point(13, 10);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
             this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
             this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(994, 524);
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(953, 482);
             this.fastColoredTextBox1.TabIndex = 4;
             this.fastColoredTextBox1.Text = "fastColoredTextBox1";
             this.fastColoredTextBox1.Zoom = 100;
+            // 
+            // EditorTab
+            // 
+            this.EditorTab.Controls.Add(this.CodeTab);
+            this.EditorTab.Controls.Add(this.DesignerTab);
+            this.EditorTab.Location = new System.Drawing.Point(390, 90);
+            this.EditorTab.Name = "EditorTab";
+            this.EditorTab.SelectedIndex = 0;
+            this.EditorTab.Size = new System.Drawing.Size(980, 524);
+            this.EditorTab.TabIndex = 5;
+            // 
+            // CodeTab
+            // 
+            this.CodeTab.Controls.Add(this.fastColoredTextBox1);
+            this.CodeTab.Location = new System.Drawing.Point(4, 22);
+            this.CodeTab.Name = "CodeTab";
+            this.CodeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.CodeTab.Size = new System.Drawing.Size(972, 498);
+            this.CodeTab.TabIndex = 0;
+            this.CodeTab.Text = "Code View";
+            this.CodeTab.UseVisualStyleBackColor = true;
+            // 
+            // DesignerTab
+            // 
+            this.DesignerTab.Controls.Add(this.label1);
+            this.DesignerTab.Location = new System.Drawing.Point(4, 22);
+            this.DesignerTab.Name = "DesignerTab";
+            this.DesignerTab.Padding = new System.Windows.Forms.Padding(3);
+            this.DesignerTab.Size = new System.Drawing.Size(972, 498);
+            this.DesignerTab.TabIndex = 1;
+            this.DesignerTab.Text = "Designer View";
+            this.DesignerTab.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(431, 219);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(205, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Coming... Whenever I have time to do this";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(828, 633);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1413, 673);
-            this.Controls.Add(this.fastColoredTextBox1);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.EditorTab);
             this.Controls.Add(this.FileListBox);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.FolderTextBox);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
+            this.EditorTab.ResumeLayout(false);
+            this.CodeTab.ResumeLayout(false);
+            this.DesignerTab.ResumeLayout(false);
+            this.DesignerTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,6 +182,11 @@
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.ListBox FileListBox;
         private FastColoredTextBoxNS.FastColoredTextBox fastColoredTextBox1;
+        private System.Windows.Forms.TabControl EditorTab;
+        private System.Windows.Forms.TabPage CodeTab;
+        private System.Windows.Forms.TabPage DesignerTab;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

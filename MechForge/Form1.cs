@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace MechForge
     {
         private string directory;
         private const string DEFAULT_DIR = "D:\\SteamLibrary\\steamapps\\common\\BATTLETECH\\BattleTech_Data\\StreamingAssets\\data\\mech";
-
+        private string filename;
 
         public Form1()
         {
@@ -52,13 +53,21 @@ namespace MechForge
         private void FileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            string filename = FileListBox.Text;          
+            filename = FileListBox.Text;          
 
             string text = File.ReadAllText($"{directory}\\{filename}");
 
-            string formatted = JValue.Parse(text).ToString(Newtonsoft.Json.Formatting.Indented);
+            try
+            {
+                string formatted = JValue.Parse(text).ToString(Newtonsoft.Json.Formatting.Indented);
+                fastColoredTextBox1.Text = formatted;
+            }
+            catch (JsonReaderException exception)
+            {
+                //swallow for now
+            }
 
-            fastColoredTextBox1.Text = formatted;
+            
         }
 
         private string SyntaxHighlightJson(string original)
@@ -89,6 +98,13 @@ namespace MechForge
                   }
                   return "<span class=\"" + cls + "\">" + match + "</span>";
               });
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string textToSave = fastColoredTextBox1.Text;
+            File.WriteAllText($"{directory}\\{filename}",textToSave);
+
         }
     }
 }
