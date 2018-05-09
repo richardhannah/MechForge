@@ -12,8 +12,8 @@ namespace MechForge
 {
     public partial class Form1 : Form
     {
-        private string directory;
-        private string filename;
+        private string currentlyLoadedFile;
+        private List<string> exclusionList;
 
         public Form1()
         {
@@ -21,76 +21,54 @@ namespace MechForge
             string defaultDirectory = ConfigurationManager.AppSettings["defaultDataDir"];
             FolderTextBox.Text = defaultDirectory;
 
-            DirectoryInfo directoryInfo = new DirectoryInfo(defaultDirectory);
+            exclusionList = new List<string>();
+            exclusionList.Add(".gitignore");
+            exclusionList.Add("git");
+
+            LoadDirectory(defaultDirectory);
+            
+            
+        }
+
+        private void LoadDirectory(string directory)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
             if (directoryInfo.Exists)
             {
                 treeView1.AfterSelect += treeView1_AfterSelect;
                 BuildTree(directoryInfo, treeView1.Nodes);
             }
-
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            directory = FolderTextBox.Text;
-            
-            DirectoryInfo di = new DirectoryInfo(directory);
-
-            List<FileInfo> filenames = new List<FileInfo>();
-
-            try
-            {
-                filenames = di.GetFiles().ToList<FileInfo>();
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                Debug.WriteLine(ex.StackTrace);
-            }
-
-            FileListBox.DataSource = filenames;
-            FileListBox.DisplayMember = "Name";
-            
-
-        }
-
-        private void FileListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            filename = FileListBox.Text;          
-
-            string text = File.ReadAllText($"{directory}\\{filename}");
-
-            try
-            {
-                string formatted = JValue.Parse(text).ToString(Newtonsoft.Json.Formatting.Indented);
-                fastColoredTextBox1.Text = formatted;
-            }
-            catch (JsonReaderException exception)
-            {
-                //swallow for now
-            }
-
-            
+            LoadDirectory(FolderTextBox.Text);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string textToSave = fastColoredTextBox1.Text;
-            File.WriteAllText($"{directory}\\{filename}",textToSave);
-
+            File.WriteAllText(currentlyLoadedFile, textToSave);
         }
 
-        private void BuildTree(DirectoryInfo directoryInfo, TreeNodeCollection addInMe)
+        private void BuildTree(DirectoryInfo directoryInfo, TreeNodeCollection treeNodes)
         {
-            TreeNode curNode = addInMe.Add(directoryInfo.Name);
+            //treeNodes.Clear();
+
+            TreeNode currentNode = treeNodes.Add(directoryInfo.Name);            
 
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
-                curNode.Nodes.Add(file.FullName, file.Name);
+                
+                    currentNode.Nodes.Add(file.FullName, file.Name);
+                
+                
             }
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
-                BuildTree(subdir, curNode.Nodes);
+                
+                    BuildTree(subdir, currentNode.Nodes);
+                               
             }
         }
 
@@ -98,11 +76,14 @@ namespace MechForge
         {
             if (e.Node.Name.EndsWith("json"))
             {
-                LoadFile(e.Node.Name);
+                if (LoadFile(e.Node.Name))
+                {
+                    currentlyLoadedFile = e.Node.Name;
+                }
             }
         }
 
-        private void LoadFile(string filename)
+        private bool LoadFile(string filename)
         {
             string text = File.ReadAllText(filename);
 
@@ -113,8 +94,10 @@ namespace MechForge
             }
             catch (JsonReaderException exception)
             {
-                //swallow for now
+                return false;
             }
+
+            return true;
         }
     }
 }
