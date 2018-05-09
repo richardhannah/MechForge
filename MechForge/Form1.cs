@@ -2,29 +2,31 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace MechForge
 {
     public partial class Form1 : Form
     {
         private string directory;
-        private const string DEFAULT_DIR = "D:\\SteamLibrary\\steamapps\\common\\BATTLETECH\\BattleTech_Data\\StreamingAssets\\data\\mech";
         private string filename;
 
         public Form1()
         {
             InitializeComponent();
-            FolderTextBox.Text = DEFAULT_DIR;
+            FolderTextBox.Text = ConfigurationManager.AppSettings["defaultDataDir"];
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\SteamLibrary\steamapps\common\BATTLETECH\BattleTech_Data\StreamingAssets\data");
+            if (directoryInfo.Exists)
+            {
+                treeView1.AfterSelect += treeView1_AfterSelect;
+                BuildTree(directoryInfo, treeView1.Nodes);
+            }
+
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -70,41 +72,38 @@ namespace MechForge
             
         }
 
-        private string SyntaxHighlightJson(string original)
-        {
-            return Regex.Replace(
-              original,
-              @"(¤(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\¤])*¤(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)".Replace('¤', '"'),
-              match => {
-                  var cls = "number";
-                  if (Regex.IsMatch(match.Value, @"^¤".Replace('¤', '"')))
-                  {
-                      if (Regex.IsMatch(match.Value, ":$"))
-                      {
-                          cls = "key";
-                      }
-                      else
-                      {
-                          cls = "string";
-                      }
-                  }
-                  else if (Regex.IsMatch(match.Value, "true|false"))
-                  {
-                      cls = "boolean";
-                  }
-                  else if (Regex.IsMatch(match.Value, "null"))
-                  {
-                      cls = "null";
-                  }
-                  return "<span class=\"" + cls + "\">" + match + "</span>";
-              });
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             string textToSave = fastColoredTextBox1.Text;
             File.WriteAllText($"{directory}\\{filename}",textToSave);
 
+        }
+
+        private void BuildTree(DirectoryInfo directoryInfo, TreeNodeCollection addInMe)
+        {
+            TreeNode curNode = addInMe.Add(directoryInfo.Name);
+
+            foreach (FileInfo file in directoryInfo.GetFiles())
+            {
+                curNode.Nodes.Add(file.FullName, file.Name);
+            }
+            foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
+            {
+                BuildTree(subdir, curNode.Nodes);
+            }
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Name.EndsWith("txt"))
+            {
+                /*
+                this.richTextBox1.Clear();
+                StreamReader reader = new StreamReader(e.Node.Name);
+                this.richTextBox1.Text = reader.ReadToEnd();
+                reader.Close();
+                */
+            }
         }
     }
 }
