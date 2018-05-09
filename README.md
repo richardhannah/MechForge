@@ -10,4 +10,4 @@ This is just a zipped up copy of the release build - will have to do till I get 
 
 Latest Screenshot
 
-![Imgur Image](https://i.imgur.com/J5ZKjnL.png)
+![Imgur Image](https://i.imgur.com/PPHyPuo.png)
