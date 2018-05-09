@@ -7,4 +7,4 @@ https://trello.com/b/FybjRwEj/mechforge
 
 Latest Screenshot
 
-![Imgur Image](https://imgur.com/J5ZKjnL)
+![Imgur Image](https://i.imgur.com/J5ZKjnL.png)
