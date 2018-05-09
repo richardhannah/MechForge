@@ -18,9 +18,10 @@ namespace MechForge
         public Form1()
         {
             InitializeComponent();
-            FolderTextBox.Text = ConfigurationManager.AppSettings["defaultDataDir"];
+            string defaultDirectory = ConfigurationManager.AppSettings["defaultDataDir"];
+            FolderTextBox.Text = defaultDirectory;
 
-            DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\SteamLibrary\steamapps\common\BATTLETECH\BattleTech_Data\StreamingAssets\data");
+            DirectoryInfo directoryInfo = new DirectoryInfo(defaultDirectory);
             if (directoryInfo.Exists)
             {
                 treeView1.AfterSelect += treeView1_AfterSelect;
@@ -95,14 +96,24 @@ namespace MechForge
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Name.EndsWith("txt"))
+            if (e.Node.Name.EndsWith("json"))
             {
-                /*
-                this.richTextBox1.Clear();
-                StreamReader reader = new StreamReader(e.Node.Name);
-                this.richTextBox1.Text = reader.ReadToEnd();
-                reader.Close();
-                */
+                LoadFile(e.Node.Name);
+            }
+        }
+
+        private void LoadFile(string filename)
+        {
+            string text = File.ReadAllText(filename);
+
+            try
+            {
+                string formatted = JValue.Parse(text).ToString(Newtonsoft.Json.Formatting.Indented);
+                fastColoredTextBox1.Text = formatted;
+            }
+            catch (JsonReaderException exception)
+            {
+                //swallow for now
             }
         }
     }

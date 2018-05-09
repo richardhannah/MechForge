@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.FolderTextBox = new System.Windows.Forms.TextBox();
             this.LoadButton = new System.Windows.Forms.Button();
-            this.FileListBox = new System.Windows.Forms.ListBox();
             this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.EditorTab = new System.Windows.Forms.TabControl();
             this.CodeTab = new System.Windows.Forms.TabPage();
@@ -68,15 +67,6 @@
             this.LoadButton.UseVisualStyleBackColor = true;
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
-            // FileListBox
-            // 
-            this.FileListBox.FormattingEnabled = true;
-            this.FileListBox.Location = new System.Drawing.Point(45, 103);
-            this.FileListBox.Name = "FileListBox";
-            this.FileListBox.Size = new System.Drawing.Size(306, 95);
-            this.FileListBox.TabIndex = 2;
-            this.FileListBox.SelectedIndexChanged += new System.EventHandler(this.FileListBox_SelectedIndexChanged);
-            // 
             // fastColoredTextBox1
             // 
             this.fastColoredTextBox1.AutoCompleteBracketsList = new char[] {
@@ -96,7 +86,6 @@
             this.fastColoredTextBox1.CharWidth = 8;
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(13, 10);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
@@ -191,9 +180,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(45, 232);
+            this.treeView1.Location = new System.Drawing.Point(45, 112);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(306, 360);
+            this.treeView1.Size = new System.Drawing.Size(306, 502);
             this.treeView1.TabIndex = 8;
             // 
             // Form1
@@ -205,7 +194,6 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.EditorTab);
-            this.Controls.Add(this.FileListBox);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.FolderTextBox);
             this.Controls.Add(this.menuStrip1);
@@ -228,7 +216,6 @@
 
         private System.Windows.Forms.TextBox FolderTextBox;
         private System.Windows.Forms.Button LoadButton;
-        private System.Windows.Forms.ListBox FileListBox;
         private FastColoredTextBoxNS.FastColoredTextBox fastColoredTextBox1;
         private System.Windows.Forms.TabControl EditorTab;
         private System.Windows.Forms.TabPage CodeTab;
