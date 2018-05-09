@@ -165,7 +165,7 @@
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.FolderTextBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "MechForge";
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
             this.EditorTab.ResumeLayout(false);
             this.CodeTab.ResumeLayout(false);
