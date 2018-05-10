@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Configuration;
+using MechForge.Controller;
 
 namespace MechForge
 {
@@ -15,89 +16,30 @@ namespace MechForge
         private string currentlyLoadedFile;
         private List<string> exclusionList;
 
+        private ITreeViewController treeViewController;
+
         public Form1()
         {
             InitializeComponent();
             string defaultDirectory = ConfigurationManager.AppSettings["defaultDataDir"];
+            treeViewController = new TreeViewController(new DirectoryInfo(defaultDirectory),treeView1 );
             FolderTextBox.Text = defaultDirectory;
-
-            exclusionList = new List<string>();
-            exclusionList.Add(".gitignore");
-            exclusionList.Add("git");
-
-            LoadDirectory(defaultDirectory);
-            
-            
-        }
-
-        private void LoadDirectory(string directory)
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
-            if (directoryInfo.Exists)
-            {
-                treeView1.AfterSelect += treeView1_AfterSelect;
-                BuildTree(directoryInfo, treeView1.Nodes);
-            }
+            treeViewController.Editor = fastColoredTextBox1;
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            LoadDirectory(FolderTextBox.Text);
+            treeViewController.Clear();
+            treeViewController.DirectoryInfo = new DirectoryInfo(FolderTextBox.Text);
+            treeViewController.Build();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string textToSave = fastColoredTextBox1.Text;
-            File.WriteAllText(currentlyLoadedFile, textToSave);
+            File.WriteAllText(treeViewController.SelectedNode.Name, textToSave);
         }
 
-        private void BuildTree(DirectoryInfo directoryInfo, TreeNodeCollection treeNodes)
-        {
-            //treeNodes.Clear();
-
-            TreeNode currentNode = treeNodes.Add(directoryInfo.Name);            
-
-            foreach (FileInfo file in directoryInfo.GetFiles())
-            {
-                
-                    currentNode.Nodes.Add(file.FullName, file.Name);
-                
-                
-            }
-            foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
-            {
-                
-                    BuildTree(subdir, currentNode.Nodes);
-                               
-            }
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node.Name.EndsWith("json"))
-            {
-                if (LoadFile(e.Node.Name))
-                {
-                    currentlyLoadedFile = e.Node.Name;
-                }
-            }
-        }
-
-        private bool LoadFile(string filename)
-        {
-            string text = File.ReadAllText(filename);
-
-            try
-            {
-                string formatted = JValue.Parse(text).ToString(Newtonsoft.Json.Formatting.Indented);
-                fastColoredTextBox1.Text = formatted;
-            }
-            catch (JsonReaderException exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
+        
     }
 }
