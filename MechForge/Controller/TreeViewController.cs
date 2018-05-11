@@ -61,9 +61,12 @@ namespace MechForge.Controller
 
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
-//                Type headerType = fileNameTranslator.GetTypeFor(file.Name);
-//                var header = fileNameTranslator.Decode<Type>(file.Name);
-                currentNode.Nodes.Add(file.FullName, file.Name);
+                var header = fileNameTranslator.Decode(file.Name);
+                if (header.ItemId != "ItemId not found")
+                {
+                    currentNode.Nodes.Add(file.FullName, header.ItemId);
+                }
+                
             }
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
