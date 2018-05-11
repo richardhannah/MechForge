@@ -6,20 +6,32 @@ namespace MechForge.Translator
 {
     public class FilenameTranslator : IFileNameTranslator
     {
+        private string[] headerData;
+        Char delimiter = '_';
+
         public string Encode<T>(object header)
         {
             throw new System.NotImplementedException();
         }
 
-        public Type GetTypeFor(string filename)
+        public BaseHeader Decode(string filename) { 
+            return instantiateHeader(filename);
+        }
+
+        private BaseHeader instantiateHeader(string filename)
         {
-            Dictionary<string,Type> typeLookup = new Dictionary<string, Type>()
+            return (BaseHeader)Activator.CreateInstance(getTypeFor(filename),new object[]{ headerData });
+        }
+
+        private Type getTypeFor(string filename)
+        {
+            Dictionary<string, Type> typeLookup = new Dictionary<string, Type>()
             {
                 { "weapon", typeof(WeaponHeader)}
             };
 
-            Char delimiter = '_';
-            string key = filename.Split(delimiter)[0];
+            headerData = filename.Split(delimiter);
+            string key = headerData[0];
 
             if (typeLookup.ContainsKey(key))
             {
@@ -27,17 +39,6 @@ namespace MechForge.Translator
             }
 
             return typeof(DefaultHeader);
-
-        }
-
-        public T Decode<T>(string filename)
-        {
-
-            T decoded = default(T);
-
-            
-
-            return decoded;
         }
     }
 }

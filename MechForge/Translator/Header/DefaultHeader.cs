@@ -1,7 +1,10 @@
 ﻿namespace MechForge.Translator.Header
 {
-    public class DefaultHeader
+    public class DefaultHeader : BaseHeader
     {
-        public string Filename { get; set; }
+
+        public DefaultHeader(string [] headerData) : base(headerData) { }
+
+        public override string Filename { get; set; }
     }
 }

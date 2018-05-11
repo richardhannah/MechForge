@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Configuration;
 using MechForge.Controller;
+using MechForge.Translator;
 
 namespace MechForge
 {
@@ -22,7 +23,7 @@ namespace MechForge
         {
             InitializeComponent();
             string defaultDirectory = ConfigurationManager.AppSettings["defaultDataDir"];
-            treeViewController = new TreeViewController(new DirectoryInfo(defaultDirectory),treeView1 );
+            treeViewController = new TreeViewController(new DirectoryInfo(defaultDirectory),treeView1,new FilenameTranslator() );
             FolderTextBox.Text = defaultDirectory;
             treeViewController.Editor = fastColoredTextBox1;
         }

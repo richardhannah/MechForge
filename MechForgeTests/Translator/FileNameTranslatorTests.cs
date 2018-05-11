@@ -14,9 +14,9 @@ namespace MechForgeTests.Translator
             string testString = "weapon_someotherstuff";
             
             IFileNameTranslator testSubject = new FilenameTranslator();
-            Type translatedType = testSubject.GetTypeFor(testString);
+            var translatedType = testSubject.Decode(testString);
 
-            Assert.AreEqual(typeof(WeaponHeader).FullName,translatedType.FullName);
+            Assert.AreEqual(typeof(WeaponHeader),translatedType.GetType());
 
         }
 
@@ -26,9 +26,9 @@ namespace MechForgeTests.Translator
             string testString = "x_someotherstuff";
 
             IFileNameTranslator testSubject = new FilenameTranslator();
-            Type translatedType = testSubject.GetTypeFor(testString);
+            var translatedType = testSubject.Decode(testString);
 
-            Assert.AreEqual(typeof(DefaultHeader).FullName, translatedType.FullName);
+            Assert.AreEqual(typeof(DefaultHeader), translatedType.GetType());
 
         }
     }

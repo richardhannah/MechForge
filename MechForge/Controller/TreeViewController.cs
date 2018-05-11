@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MechForge.Translator;
 
 namespace MechForge.Controller
 {
@@ -19,6 +20,7 @@ namespace MechForge.Controller
         private FastColoredTextBox editor;
         private TreeView treeView;
         private TreeNode selectedNode;
+        private IFileNameTranslator fileNameTranslator;
 
         public DirectoryInfo DirectoryInfo { set { directoryInfo = value; } }
         public TreeView TreeView { set { treeView = value; } }
@@ -29,10 +31,11 @@ namespace MechForge.Controller
         }
 
 
-        public TreeViewController(DirectoryInfo directoryInfo,TreeView treeView)
+        public TreeViewController(DirectoryInfo directoryInfo,TreeView treeView,IFileNameTranslator fileNameTranslator)
         {
             this.directoryInfo = directoryInfo;
             this.treeView = treeView;
+            this.fileNameTranslator = fileNameTranslator;
 
             if (directoryInfo.Exists)
             {
@@ -58,6 +61,8 @@ namespace MechForge.Controller
 
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
+//                Type headerType = fileNameTranslator.GetTypeFor(file.Name);
+//                var header = fileNameTranslator.Decode<Type>(file.Name);
                 currentNode.Nodes.Add(file.FullName, file.Name);
             }
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())

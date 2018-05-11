@@ -59,6 +59,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator\FilenameTranslator.cs" />
+    <Compile Include="Translator\Header\BaseHeader.cs" />
     <Compile Include="Translator\Header\DefaultHeader.cs" />
     <Compile Include="Translator\Header\WeaponHeader.cs" />
     <Compile Include="Translator\IFileNameTranslator.cs" />

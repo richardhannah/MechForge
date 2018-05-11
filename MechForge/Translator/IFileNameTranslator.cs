@@ -1,11 +1,12 @@
 ﻿using System;
+using MechForge.Translator.Header;
 
 namespace MechForge.Translator
 {
     public interface IFileNameTranslator
     {
-        Type GetTypeFor(string filename);
+        
         string Encode<T>(object header);
-        T Decode<T>(string filename);
+        BaseHeader Decode(string filename);
     }
 }
