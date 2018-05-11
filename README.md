@@ -10,4 +10,4 @@ To set the default battletech data directory - edit MechForge.exe.config
 
 Latest Screenshot
 
-![Imgur Image](https://i.imgur.com/PPHyPuo.png)
+![Imgur Image](https://i.imgur.com/haRIyPG.png)
