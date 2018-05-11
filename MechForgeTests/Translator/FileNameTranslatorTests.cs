@@ -3,7 +3,7 @@ using MechForge.Translator;
 using MechForge.Translator.Header;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MechForgeTests
+namespace MechForgeTests.Translator
 {
     [TestClass]
     public class FileNameTranslatorTests
