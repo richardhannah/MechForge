@@ -66,6 +66,7 @@
     <Compile Include="Translator\FilenameTranslator.cs" />
     <Compile Include="Translator\Header\AbilityHeader.cs" />
     <Compile Include="Translator\Header\BaseHeader.cs" />
+    <Compile Include="Translator\Header\ConstantsHeader.cs" />
     <Compile Include="Translator\Header\DefaultHeader.cs" />
     <Compile Include="Translator\Header\WeaponHeader.cs" />
     <Compile Include="Translator\IFilenameDecoder.cs" />

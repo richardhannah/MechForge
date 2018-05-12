@@ -8,6 +8,6 @@ namespace MechForge.Translator
 {
     public interface IFilenameDecoder
     {
-        DecodedFileName DecodeFilename(string filename);
+        DecodedFileName DecodeFilename(string strippedFilename);
     }
 }

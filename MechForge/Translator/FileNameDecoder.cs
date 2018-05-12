@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using MechForge.Translator.Header;
 
@@ -10,8 +11,14 @@ namespace MechForge.Translator
         
         private Dictionary<string, Type> typeLookup = new Dictionary<string, Type>()
         {
-            { "weapon", typeof(WeaponHeader)},
-            { "Ability", typeof(AbilityHeader) }
+            { "Weapon", typeof(WeaponHeader)},
+            { "Ability", typeof(AbilityHeader)},
+            { "Application", typeof(ConstantsHeader)},
+            { "Audio", typeof(ConstantsHeader)},
+            { "Combat", typeof(ConstantsHeader)},
+            { "Map", typeof(ConstantsHeader)},
+            { "Mech", typeof(ConstantsHeader)}
+
         };
 
         public DecodedFileName DecodeFilename(string filename)
@@ -19,16 +26,15 @@ namespace MechForge.Translator
 
             DecodedFileName decoded = new DecodedFileName();
             decoded.Filename = filename;
+            string strippedFilename = StripFileNameExtension(filename);
 
             string[] headerData;
 
-         
-
-            headerData = filename.Split('_');
+            headerData = strippedFilename.Split('_');
 
             if (headerData.Length == 1)
             {
-                headerData = splitCamelCaseStrings(filename);
+                headerData = splitCamelCaseStrings(strippedFilename);
             }
 
             string key = headerData[0];
@@ -41,10 +47,15 @@ namespace MechForge.Translator
             {
                 decoded.HeaderType = typeof(DefaultHeader);
             }
-
+            
             decoded.HeaderData = headerData;
-
+            
             return decoded;
+        }
+
+        private string StripFileNameExtension(string lastDatum)
+        {
+            return Path.GetFileNameWithoutExtension(lastDatum);
         }
 
         private string[] splitCamelCaseStrings(string filename)

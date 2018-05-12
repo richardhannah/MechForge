@@ -62,9 +62,9 @@ namespace MechForge.Controller
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
                 var header = fileNameTranslator.Decode(file.Name);
-                if (header.ItemId != "ItemId not found")
+                if (header.DisplayName != "ItemId not found")
                 {
-                    currentNode.Nodes.Add(file.FullName, header.ItemId);
+                    currentNode.Nodes.Add(file.FullName, header.DisplayName);
                 }
                 
             }

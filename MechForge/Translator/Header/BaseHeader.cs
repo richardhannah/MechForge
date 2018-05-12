@@ -17,7 +17,7 @@ namespace MechForge.Translator.Header
             
         }
 
-        public virtual string ItemId
+        public virtual string DisplayName
         {
             get
             {

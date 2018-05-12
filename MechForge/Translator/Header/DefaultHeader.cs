@@ -7,7 +7,7 @@ namespace MechForge.Translator.Header
 
         public DefaultHeader(DecodedFileName decodedFileName) : base(decodedFileName) { }
 
-        public override string ItemId
+        public override string DisplayName
         {
             get
             {
