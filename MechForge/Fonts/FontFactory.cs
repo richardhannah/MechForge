@@ -6,22 +6,13 @@ namespace MechForge.Fonts
 {
     public class FontFactory : IFontFactory
     {
-        private Font buttonFont;
-        private Font heading1;
-        private Font heading2;
+        private readonly Font buttonFont;
+        private readonly Font heading1;
+        private readonly Font heading2;
 
-        public Font ButtonFont
-        {
-            get { return buttonFont; }
-        }
-        public Font Heading1
-        {
-            get { return heading1; }
-        }
-        public Font Heading2
-        {
-            get { return heading2; }
-        }
+        public Font ButtonFont => buttonFont;
+        public Font Heading1 => heading1;
+        public Font Heading2 => heading2;
 
         public Font getFont(float size)
         {
