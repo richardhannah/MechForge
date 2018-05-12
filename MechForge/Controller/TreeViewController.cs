@@ -30,6 +30,8 @@ namespace MechForge.Controller
             get { return selectedNode; }
         }
 
+        
+
 
         public TreeViewController(DirectoryInfo directoryInfo,TreeView treeView,IFileNameTranslator fileNameTranslator)
         {

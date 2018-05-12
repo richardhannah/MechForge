@@ -27,6 +27,8 @@ namespace MechForge
         private Font buttonFont;
 
         private ITreeViewController treeViewController;
+        private DataCategory currentCategory;
+
 
         public Form1()
         {
@@ -37,6 +39,59 @@ namespace MechForge
             treeViewController = new TreeViewController(new DirectoryInfo(defaultDirectory),treeView1,new FilenameTranslator() );
             FolderTextBox.Text = defaultDirectory;
             treeViewController.Editor = fastColoredTextBox1;
+
+            EditorTab.TabPages.Remove(DesignerTab);
+        }
+
+        
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            treeViewController.Clear();
+            treeViewController.DirectoryInfo = new DirectoryInfo(FolderTextBox.Text);
+            treeViewController.Build();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string textToSave = fastColoredTextBox1.Text;
+            File.WriteAllText(treeViewController.SelectedNode.Name, textToSave);
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            currentCategory = ParseDataCategory(e);
+            lblSelectedCategory.Text = currentCategory.ToString();
+
+            if (currentCategory == DataCategory.weapon)
+            {
+                if (!EditorTab.TabPages.Contains(DesignerTab))
+                {
+                    EditorTab.TabPages.Add(DesignerTab);
+                }
+                
+            }
+            else
+            {
+                EditorTab.TabPages.Remove(DesignerTab);
+            }
+        }
+
+        private DataCategory ParseDataCategory(TreeViewEventArgs e)
+        {
+            return e.Node.Parent.Text == "data" ? TextToEnum(e.Node.Text) : TextToEnum(e.Node.Parent.Text);
+        }
+
+        private DataCategory TextToEnum(string text)
+        {
+            try
+            {
+                return (DataCategory) Enum.Parse(typeof(DataCategory), text);
+            }
+            catch (ArgumentException ex)
+            {
+                return DataCategory.undefined;
+            }
         }
 
         private void InitializeFonts()
@@ -60,21 +115,8 @@ namespace MechForge
             DesignerTab.Font = buttonFont;
             lblDataFolder.Font = bigLabelFont;
             lblResourceBrowser.Font = bigLabelFont;
+            lblSelectedCategory.Font = buttonFont;
         }
 
-        private void LoadButton_Click(object sender, EventArgs e)
-        {
-            treeViewController.Clear();
-            treeViewController.DirectoryInfo = new DirectoryInfo(FolderTextBox.Text);
-            treeViewController.Build();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string textToSave = fastColoredTextBox1.Text;
-            File.WriteAllText(treeViewController.SelectedNode.Name, textToSave);
-        }
-
-        
     }
 }

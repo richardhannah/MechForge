@@ -46,6 +46,7 @@
             this.lblDataFolder = new System.Windows.Forms.Label();
             this.lblResourceBrowser = new System.Windows.Forms.Label();
             this.lblHeading = new System.Windows.Forms.Label();
+            this.lblSelectedCategory = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.EditorTab.SuspendLayout();
             this.CodeTab.SuspendLayout();
@@ -100,6 +101,7 @@
             this.fastColoredTextBox1.CharWidth = 8;
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(0, 3);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
@@ -209,39 +211,50 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(346, 410);
             this.treeView1.TabIndex = 8;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // lblDataFolder
             // 
             this.lblDataFolder.AutoSize = true;
-            this.lblDataFolder.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataFolder.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblDataFolder.Location = new System.Drawing.Point(14, 65);
             this.lblDataFolder.Name = "lblDataFolder";
-            this.lblDataFolder.Size = new System.Drawing.Size(131, 22);
+            this.lblDataFolder.Size = new System.Drawing.Size(130, 19);
             this.lblDataFolder.TabIndex = 9;
             this.lblDataFolder.Text = "Data Folder";
             // 
             // lblResourceBrowser
             // 
             this.lblResourceBrowser.AutoSize = true;
-            this.lblResourceBrowser.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResourceBrowser.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResourceBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblResourceBrowser.Location = new System.Drawing.Point(14, 95);
             this.lblResourceBrowser.Name = "lblResourceBrowser";
-            this.lblResourceBrowser.Size = new System.Drawing.Size(199, 22);
+            this.lblResourceBrowser.Size = new System.Drawing.Size(196, 19);
             this.lblResourceBrowser.TabIndex = 10;
-            this.lblResourceBrowser.Text = "Resource Browser";
+            this.lblResourceBrowser.Text = "Resource Browser:";
             // 
             // lblHeading
             // 
             this.lblHeading.AutoSize = true;
-            this.lblHeading.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblHeading.Location = new System.Drawing.Point(12, 29);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(172, 32);
+            this.lblHeading.Size = new System.Drawing.Size(156, 27);
             this.lblHeading.TabIndex = 11;
             this.lblHeading.Text = "MechForge";
+            // 
+            // lblSelectedCategory
+            // 
+            this.lblSelectedCategory.AutoSize = true;
+            this.lblSelectedCategory.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectedCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSelectedCategory.Location = new System.Drawing.Point(244, 95);
+            this.lblSelectedCategory.Name = "lblSelectedCategory";
+            this.lblSelectedCategory.Size = new System.Drawing.Size(0, 19);
+            this.lblSelectedCategory.TabIndex = 12;
             // 
             // Form1
             // 
@@ -249,6 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1648, 569);
+            this.Controls.Add(this.lblSelectedCategory);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.lblResourceBrowser);
             this.Controls.Add(this.lblDataFolder);
@@ -292,6 +306,7 @@
         private System.Windows.Forms.Label lblDataFolder;
         private System.Windows.Forms.Label lblResourceBrowser;
         private System.Windows.Forms.Label lblHeading;
+        private System.Windows.Forms.Label lblSelectedCategory;
     }
 }
 
