@@ -8,8 +8,6 @@ namespace MechForge.Translator
     public class FileNameDecoder : IFilenameDecoder
     {
         
-        public string[] HeaderData { get; }
-
         private Dictionary<string, Type> typeLookup = new Dictionary<string, Type>()
         {
             { "weapon", typeof(WeaponHeader)},
