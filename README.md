@@ -8,6 +8,6 @@ You can now download the zipped executable from http://mechforge.richardhannah.n
 
 To set the default battletech data directory - edit MechForge.exe.config
 
-Latest Screenshot
+##Latest Screenshot
 
-![Imgur Image](https://i.imgur.com/haRIyPG.png)
+![Imgur Image](https://i.imgur.com/rX9eOGP.png)
