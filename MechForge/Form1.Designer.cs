@@ -43,9 +43,9 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblDataFolder = new System.Windows.Forms.Label();
+            this.lblResourceBrowser = new System.Windows.Forms.Label();
+            this.lblHeading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.EditorTab.SuspendLayout();
             this.CodeTab.SuspendLayout();
@@ -138,10 +138,10 @@
             // DesignerTab
             // 
             this.DesignerTab.Controls.Add(this.label1);
-            this.DesignerTab.Location = new System.Drawing.Point(4, 22);
+            this.DesignerTab.Location = new System.Drawing.Point(4, 21);
             this.DesignerTab.Name = "DesignerTab";
             this.DesignerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DesignerTab.Size = new System.Drawing.Size(1259, 384);
+            this.DesignerTab.Size = new System.Drawing.Size(1259, 385);
             this.DesignerTab.TabIndex = 1;
             this.DesignerTab.Text = "Designer View";
             this.DesignerTab.UseVisualStyleBackColor = true;
@@ -210,38 +210,38 @@
             this.treeView1.Size = new System.Drawing.Size(346, 410);
             this.treeView1.TabIndex = 8;
             // 
-            // label2
+            // lblDataFolder
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(14, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 22);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Data Folder";
+            this.lblDataFolder.AutoSize = true;
+            this.lblDataFolder.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblDataFolder.Location = new System.Drawing.Point(14, 65);
+            this.lblDataFolder.Name = "lblDataFolder";
+            this.lblDataFolder.Size = new System.Drawing.Size(131, 22);
+            this.lblDataFolder.TabIndex = 9;
+            this.lblDataFolder.Text = "Data Folder";
             // 
-            // label3
+            // lblResourceBrowser
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(14, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(199, 22);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Resource Browser";
+            this.lblResourceBrowser.AutoSize = true;
+            this.lblResourceBrowser.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResourceBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblResourceBrowser.Location = new System.Drawing.Point(14, 95);
+            this.lblResourceBrowser.Name = "lblResourceBrowser";
+            this.lblResourceBrowser.Size = new System.Drawing.Size(199, 22);
+            this.lblResourceBrowser.TabIndex = 10;
+            this.lblResourceBrowser.Text = "Resource Browser";
             // 
-            // label4
+            // lblHeading
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(12, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 32);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "MECHFORGE";
+            this.lblHeading.AutoSize = true;
+            this.lblHeading.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblHeading.Location = new System.Drawing.Point(12, 29);
+            this.lblHeading.Name = "lblHeading";
+            this.lblHeading.Size = new System.Drawing.Size(172, 32);
+            this.lblHeading.TabIndex = 11;
+            this.lblHeading.Text = "MechForge";
             // 
             // Form1
             // 
@@ -249,9 +249,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1648, 569);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblHeading);
+            this.Controls.Add(this.lblResourceBrowser);
+            this.Controls.Add(this.lblDataFolder);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.EditorTab);
@@ -289,9 +289,9 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblDataFolder;
+        private System.Windows.Forms.Label lblResourceBrowser;
+        private System.Windows.Forms.Label lblHeading;
     }
 }
 
