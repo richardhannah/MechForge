@@ -10,29 +10,22 @@ using System.Configuration;
 using System.Drawing;
 using System.Drawing.Text;
 using MechForge.Controller;
+using MechForge.Fonts;
 using MechForge.Translator;
 
 namespace MechForge
 {
     public partial class Form1 : Form
     {
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
-
-        private PrivateFontCollection fonts = new PrivateFontCollection();
-
-        private Font headerFont;
-        private Font bigLabelFont;
-        private Font buttonFont;
-
         private ITreeViewController treeViewController;
         private DataCategory currentCategory;
+        private IFontFactory fontFactory;
 
 
         public Form1()
         {
             InitializeComponent();
+            fontFactory = new FontFactory();
             InitializeFonts();
 
             string defaultDirectory = ConfigurationManager.AppSettings["defaultDataDir"];
@@ -96,26 +89,14 @@ namespace MechForge
 
         private void InitializeFonts()
         {
-            byte[] fontData = Properties.Resources.BTLogo_old;
-            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
-            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            uint dummy = 0;
-            fonts.AddMemoryFont(fontPtr, Properties.Resources.BTLogo_old.Length);
-            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.BTLogo_old.Length, IntPtr.Zero, ref dummy);
-            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
-
-            headerFont = new Font(fonts.Families[0], 20.0F);
-            bigLabelFont = new Font(fonts.Families[0], 10.0F);
-            buttonFont = new Font(fonts.Families[0], 8.0F);
-
-            lblHeading.Font = headerFont;
-            btnSave.Font = buttonFont;
-            LoadButton.Font = buttonFont;
-            EditorTab.Font = buttonFont;
-            DesignerTab.Font = buttonFont;
-            lblDataFolder.Font = bigLabelFont;
-            lblResourceBrowser.Font = bigLabelFont;
-            lblSelectedCategory.Font = buttonFont;
+            lblHeading.Font = fontFactory.Heading1;
+            btnSave.Font = fontFactory.ButtonFont;
+            LoadButton.Font = fontFactory.ButtonFont;
+            EditorTab.Font = fontFactory.ButtonFont;
+            DesignerTab.Font = fontFactory.ButtonFont;
+            lblDataFolder.Font = fontFactory.Heading2;
+            lblResourceBrowser.Font = fontFactory.Heading2;
+            lblSelectedCategory.Font = fontFactory.ButtonFont;
         }
 
     }
