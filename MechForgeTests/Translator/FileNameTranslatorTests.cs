@@ -31,5 +31,30 @@ namespace MechForgeTests.Translator
             Assert.AreEqual(typeof(DefaultHeader), translatedType.GetType());
 
         }
+
+        [TestMethod]
+        public void TestTranslatorReturnsValidTypeWhenFilenameIsCamelCase()
+        {
+            string testString = "aCamelCaseFileName";
+
+            IFileNameTranslator testSubject = new FilenameTranslator();
+            var translatedType = testSubject.Decode(testString);
+
+            Assert.AreEqual(typeof(DefaultHeader), translatedType.GetType());
+
+        }
+
+        [TestMethod]
+        public void TestTranslatorReturnsAbilityHeader()
+        {
+            string testString = "AbilityCamelCaseFileName";
+
+            IFileNameTranslator testSubject = new FilenameTranslator();
+            var translatedType = testSubject.Decode(testString);
+
+            Assert.AreEqual(typeof(AbilityHeader), translatedType.GetType());
+
+        }
+
     }
 }

@@ -1,29 +1,53 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace MechForge.Translator.Header
 {
     public abstract class BaseHeader
     {
-        protected string[] headerData;
+        
+        protected DecodedFileName decodedFileName;
 
-        public abstract string Filename { get; set; }
+        public virtual string Filename
+        {
+            get
+            {
+                return decodedFileName.Filename;
+            }
+            
+        }
 
         public virtual string ItemId
         {
             get
             {
-                if (headerData.Length > 1)
+                string itemId = "";
+                try
                 {
-                    return headerData[1];
+                    for (int i = 1; i < decodedFileName.HeaderData.Length; i++)
+                    {
+                        if (i == decodedFileName.HeaderData.Length - 1)
+                        {
+                            itemId += decodedFileName.HeaderData[i].Split('.')[0];
+                        }
+                        else
+                        {
+                            itemId += decodedFileName.HeaderData[i];
+                        }
+                    }
+                }
+                catch (NullReferenceException exception)
+                {
+                    return decodedFileName.Filename;
                 }
 
-                return "item id not found";
+                return Filename;
             }
         }
 
-        public BaseHeader(string[] headerData)
+        public BaseHeader(DecodedFileName decodedFileName)
         {
-            this.headerData = headerData;
+            this.decodedFileName = decodedFileName;
         }
     }
 }

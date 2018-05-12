@@ -61,10 +61,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Translator\DecodedFileName.cs" />
+    <Compile Include="Translator\FileNameDecoder.cs" />
     <Compile Include="Translator\FilenameTranslator.cs" />
+    <Compile Include="Translator\Header\AbilityHeader.cs" />
     <Compile Include="Translator\Header\BaseHeader.cs" />
     <Compile Include="Translator\Header\DefaultHeader.cs" />
     <Compile Include="Translator\Header\WeaponHeader.cs" />
+    <Compile Include="Translator\IFilenameDecoder.cs" />
     <Compile Include="Translator\IFileNameTranslator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

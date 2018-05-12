@@ -2,8 +2,8 @@
 {
     public class WeaponHeader : BaseHeader
     {
-        public WeaponHeader(string[] headerData) : base(headerData) { }
+        public WeaponHeader(DecodedFileName decodedFileName) : base(decodedFileName) { }
 
-        public override string Filename { get; set; }
+        
     }
 }

@@ -1,31 +1,40 @@
-﻿namespace MechForge.Translator.Header
+﻿using System;
+
+namespace MechForge.Translator.Header
 {
     public class DefaultHeader : BaseHeader
     {
 
-        public DefaultHeader(string [] headerData) : base(headerData) { }
+        public DefaultHeader(DecodedFileName decodedFileName) : base(decodedFileName) { }
 
         public override string ItemId
         {
             get
             {
                 string itemId = "";
-                for (int i = 1; i < headerData.Length; i++)
+                try
                 {
-                    if (i == headerData.Length -1)
+                    for (int i = 1; i < decodedFileName.HeaderData.Length; i++)
                     {
-                        itemId += headerData[i].Split('.')[0];
-                    }
-                    else
-                    {
-                        itemId += headerData[i];
+                        if (i == decodedFileName.HeaderData.Length - 1)
+                        {
+                            itemId += decodedFileName.HeaderData[i].Split('.')[0];
+                        }
+                        else
+                        {
+                            itemId += decodedFileName.HeaderData[i];
+                        }
                     }
                 }
+                catch (NullReferenceException exception)
+                {
+                    return decodedFileName.Filename;
+                }
 
-                return itemId.Length > 0 ? itemId : "ItemId not found";
+                return itemId.Length > 0 ? itemId : decodedFileName.Filename;
             }
         }
 
-        public override string Filename { get; set; }
+        
     }
 }

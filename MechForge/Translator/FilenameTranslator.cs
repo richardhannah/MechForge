@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using MechForge.Translator.Header;
 
 namespace MechForge.Translator
 {
     public class FilenameTranslator : IFileNameTranslator
     {
-        private string[] headerData;
-        Char delimiter = '_';
+        private IFilenameDecoder filenameDecoder;
+
+        public FilenameTranslator()
+        {
+            this.filenameDecoder = new FileNameDecoder();
+        }
+
 
         public string Encode<T>(object header)
         {
@@ -15,30 +21,14 @@ namespace MechForge.Translator
         }
 
         public BaseHeader Decode(string filename) { 
-            return instantiateHeader(filename);
+            return instantiateHeader(filenameDecoder.DecodeFilename(filename));
         }
 
-        private BaseHeader instantiateHeader(string filename)
+        private BaseHeader instantiateHeader(DecodedFileName decodedFileName)
         {
-            return (BaseHeader)Activator.CreateInstance(getTypeFor(filename),new object[]{ headerData });
+            return (BaseHeader)Activator.CreateInstance(decodedFileName.HeaderType, decodedFileName);
         }
 
-        private Type getTypeFor(string filename)
-        {
-            Dictionary<string, Type> typeLookup = new Dictionary<string, Type>()
-            {
-                { "weapon", typeof(WeaponHeader)}
-            };
-
-            headerData = filename.Split(delimiter);
-            string key = headerData[0];
-
-            if (typeLookup.ContainsKey(key))
-            {
-                return typeLookup[key];
-            }
-
-            return typeof(DefaultHeader);
-        }
+        
     }
 }
