@@ -58,9 +58,9 @@
             this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderTextBox.BackColor = System.Drawing.SystemColors.Menu;
-            this.FolderTextBox.Location = new System.Drawing.Point(152, 79);
+            this.FolderTextBox.Location = new System.Drawing.Point(177, 67);
             this.FolderTextBox.Name = "FolderTextBox";
-            this.FolderTextBox.Size = new System.Drawing.Size(1124, 20);
+            this.FolderTextBox.Size = new System.Drawing.Size(1311, 18);
             this.FolderTextBox.TabIndex = 0;
             // 
             // LoadButton
@@ -69,9 +69,9 @@
             this.LoadButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LoadButton.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LoadButton.Location = new System.Drawing.Point(1291, 77);
+            this.LoadButton.Location = new System.Drawing.Point(1506, 65);
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(82, 23);
+            this.LoadButton.Size = new System.Drawing.Size(96, 19);
             this.LoadButton.TabIndex = 1;
             this.LoadButton.Text = "Load";
             this.LoadButton.UseVisualStyleBackColor = false;
@@ -93,23 +93,21 @@
         '\"',
         '\'',
         '\''};
-            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(179, 14);
+            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.fastColoredTextBox1.BackBrush = null;
             this.fastColoredTextBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.fastColoredTextBox1.CharHeight = 14;
             this.fastColoredTextBox1.CharWidth = 8;
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(0, 3);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
             this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
             this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(1078, 459);
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(1258, 389);
             this.fastColoredTextBox1.TabIndex = 4;
-            this.fastColoredTextBox1.Text = "fastColoredTextBox1";
             this.fastColoredTextBox1.Zoom = 100;
             // 
             // EditorTab
@@ -119,19 +117,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditorTab.Controls.Add(this.CodeTab);
             this.EditorTab.Controls.Add(this.DesignerTab);
-            this.EditorTab.Location = new System.Drawing.Point(315, 139);
+            this.EditorTab.Font = new System.Drawing.Font("Copperplate Gothic Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditorTab.Location = new System.Drawing.Point(367, 118);
             this.EditorTab.Name = "EditorTab";
             this.EditorTab.SelectedIndex = 0;
-            this.EditorTab.Size = new System.Drawing.Size(1086, 484);
+            this.EditorTab.Size = new System.Drawing.Size(1267, 410);
             this.EditorTab.TabIndex = 5;
             // 
             // CodeTab
             // 
             this.CodeTab.Controls.Add(this.fastColoredTextBox1);
-            this.CodeTab.Location = new System.Drawing.Point(4, 22);
+            this.CodeTab.Location = new System.Drawing.Point(4, 21);
             this.CodeTab.Name = "CodeTab";
             this.CodeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CodeTab.Size = new System.Drawing.Size(1078, 458);
+            this.CodeTab.Size = new System.Drawing.Size(1259, 385);
             this.CodeTab.TabIndex = 0;
             this.CodeTab.Text = "Code View";
             this.CodeTab.UseVisualStyleBackColor = true;
@@ -142,7 +141,7 @@
             this.DesignerTab.Location = new System.Drawing.Point(4, 22);
             this.DesignerTab.Name = "DesignerTab";
             this.DesignerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DesignerTab.Size = new System.Drawing.Size(972, 498);
+            this.DesignerTab.Size = new System.Drawing.Size(1259, 384);
             this.DesignerTab.TabIndex = 1;
             this.DesignerTab.Text = "Designer View";
             this.DesignerTab.UseVisualStyleBackColor = true;
@@ -150,9 +149,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(431, 219);
+            this.label1.Location = new System.Drawing.Point(503, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 13);
+            this.label1.Size = new System.Drawing.Size(251, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "Coming... Whenever I have time to do this";
             // 
@@ -162,9 +161,9 @@
             this.btnSave.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnSave.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnSave.Location = new System.Drawing.Point(800, 638);
+            this.btnSave.Location = new System.Drawing.Point(933, 540);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(87, 19);
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -178,7 +177,8 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1413, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1648, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -205,9 +205,9 @@
             this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.BackColor = System.Drawing.SystemColors.Menu;
-            this.treeView1.Location = new System.Drawing.Point(12, 139);
+            this.treeView1.Location = new System.Drawing.Point(14, 118);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(297, 484);
+            this.treeView1.Size = new System.Drawing.Size(346, 410);
             this.treeView1.TabIndex = 8;
             // 
             // label2
@@ -215,7 +215,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(12, 77);
+            this.label2.Location = new System.Drawing.Point(14, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 22);
             this.label2.TabIndex = 9;
@@ -226,7 +226,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(12, 112);
+            this.label3.Location = new System.Drawing.Point(14, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(199, 22);
             this.label3.TabIndex = 10;
@@ -237,7 +237,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(10, 34);
+            this.label4.Location = new System.Drawing.Point(12, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 32);
             this.label4.TabIndex = 11;
@@ -245,10 +245,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1413, 673);
+            this.ClientSize = new System.Drawing.Size(1648, 569);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -258,6 +258,7 @@
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.FolderTextBox);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "MechForge";
