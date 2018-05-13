@@ -26,6 +26,7 @@ namespace MechForge
         private readonly IFileNameTranslator fileNameTranslator;
 
         private bool textChanged;
+        private string originalText;
 
         public Form1()
         {
@@ -35,6 +36,7 @@ namespace MechForge
             fileSystemDao = new FileSystemDAO();
             fileNameTranslator = new FilenameTranslator();
             treeViewController = new TreeViewController(fileSystemDao.DefaultDirectoryInfo, treeView1, fileNameTranslator);
+            
 
             InitializeFonts();
 
@@ -42,6 +44,11 @@ namespace MechForge
             treeViewController.Editor = fastColoredTextBox1;
 
             EditorTab.TabPages.Remove(DesignerTab);
+        }
+
+        private void onFileLoadedHandler(object sender, EventArgs e)
+        {
+
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -67,6 +74,11 @@ namespace MechForge
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (e.Node.Name.EndsWith("json"))
+            {
+                LoadFile(e.Node.Name);
+            }
+
             string labelText = buildCategory(e.Node);
             lblSelectedCategory.Text = labelText.Substring(0,labelText.Length - 3);
             string category = labelText.Split('/')[0];
@@ -115,7 +127,37 @@ namespace MechForge
 
         private void fastColoredTextBox1_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-            textChanged = true;
+            Debug.WriteLine("TextChanged Event fired");
+//            if (!fastColoredTextBox1.Text.Equals(originalText) || fastColoredTextBox1.Text != "")
+//            {
+//                textChanged = true;
+//                TabPage codeTab = EditorTab.TabPages[EditorTab.TabPages.IndexOf(CodeTab)];
+//                codeTab.Text = codeTab.Text + "*";
+//            }
         }
+
+        private void fastColoredTextBox1_Load(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Load event fired");
+//            originalText = fastColoredTextBox1.Text;
+        }
+
+        private bool LoadFile(string filename)
+        {
+            string text = File.ReadAllText(filename);
+
+            try
+            {
+                string formatted = JToken.Parse(text).ToString(Formatting.Indented);
+                fastColoredTextBox1.Text = formatted;
+            }
+            catch (JsonReaderException exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

@@ -38,7 +38,6 @@ namespace MechForge.Controller
 
             if (directoryInfo.Exists)
             {
-                treeView.AfterSelect += treeView1_AfterSelect;
                 BuildTree(directoryInfo, treeView.Nodes);
             }
         }
@@ -71,34 +70,6 @@ namespace MechForge.Controller
             {
                 BuildTree(subdir, currentNode.Nodes);
             }
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node.Name.EndsWith("json"))
-            {
-                if (LoadFile(e.Node.Name))
-                {
-                    selectedNode = e.Node;
-                }
-            }
-        }
-
-        private bool LoadFile(string filename)
-        {
-            string text = File.ReadAllText(filename);
-
-            try
-            {
-                string formatted = JToken.Parse(text).ToString(Formatting.Indented);
-                editor.Text = formatted;
-            }
-            catch (JsonReaderException exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
     }
