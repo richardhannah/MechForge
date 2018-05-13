@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataCategory.cs" />
     <Compile Include="Data\FileSystemDAO.cs" />
     <Compile Include="Data\IFileSystemDAO.cs" />
     <Compile Include="Fonts\FontFactory.cs" />

@@ -23,7 +23,6 @@ namespace MechForge
         private readonly IFileSystemDAO fileSystemDao;
         private readonly IFileNameTranslator fileNameTranslator;
 
-        private DataCategory currentCategory;
         private bool textChanged;
 
         public Form1()
@@ -66,52 +65,19 @@ namespace MechForge
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (textChanged)
-            {
-                //MessageBox.Show("text changed");
-
-            }
-
-            currentCategory = ParseDataCategory(e);
-            lblSelectedCategory.Text = currentCategory.ToString();
-
-            if (currentCategory == DataCategory.weapon)
-            {
-                if (!EditorTab.TabPages.Contains(DesignerTab))
-                {
-                    EditorTab.TabPages.Add(DesignerTab);
-                }
-                
-            }
-            else
-            {
-                EditorTab.TabPages.Remove(DesignerTab);
-            }
+            string labelText = buildCategory(e.Node);
+            lblSelectedCategory.Text = labelText.Substring(0,labelText.Length - 3);
         }
 
-        private DataCategory ParseDataCategory(TreeViewEventArgs e)
+        private string buildCategory(TreeNode node, string labelText = "")
         {
-            try
+            if (node.Text == "data")
             {
-                return e.Node.Parent.Text == "data" ? TextToEnum(e.Node.Text) : TextToEnum(e.Node.Parent.Text);
-            }
-            catch (NullReferenceException ex)
-            {
-                return DataCategory.undefined;
+                return labelText;
             }
             
-        }
-
-        private DataCategory TextToEnum(string text)
-        {
-            try
-            {
-                return (DataCategory) Enum.Parse(typeof(DataCategory), text);
-            }
-            catch (ArgumentException ex)
-            {
-                return DataCategory.undefined;
-            }
+            labelText =$"{node.Text} / {labelText}";
+            return buildCategory(node.Parent, labelText);
         }
 
         private void InitializeFonts()
