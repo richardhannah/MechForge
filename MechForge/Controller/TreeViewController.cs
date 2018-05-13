@@ -21,21 +21,28 @@ namespace MechForge.Controller
         private TreeView treeView;
         private IFileNameTranslator fileNameTranslator;
 
-        public DirectoryInfo DirectoryInfo { set { directoryInfo = value; } }
+        public DirectoryInfo DirectoryInfo
+        {
+            set
+            {
+                directoryInfo = value;
+                if ((directoryInfo.Exists) && (this.treeView != null))
+                {
+                    Clear();
+                    Build();
+                }
+            }
+        }
+
         public TreeView TreeView { set { treeView = value; } }
         public FastColoredTextBox Editor { set { editor = value; } }
         public TreeNode SelectedNode { get; set; }
 
         public TreeViewController(DirectoryInfo directoryInfo,TreeView treeView,IFileNameTranslator fileNameTranslator)
         {
-            this.directoryInfo = directoryInfo;
             this.treeView = treeView;
             this.fileNameTranslator = fileNameTranslator;
-
-            if (directoryInfo.Exists)
-            {
-                BuildTree(directoryInfo, treeView.Nodes);
-            }
+            DirectoryInfo = directoryInfo;
         }
 
         public void Build()

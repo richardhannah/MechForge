@@ -46,9 +46,7 @@ namespace MechForge
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            treeViewController.Clear();
             treeViewController.DirectoryInfo = new DirectoryInfo(FolderTextBox.Text);
-            treeViewController.Build();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -128,6 +126,11 @@ namespace MechForge
             btnSave_Click(sender, e);
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void setEditorTabModified(bool modified)
         {
             TabPage codeTab = EditorTab.TabPages[EditorTab.TabPages.IndexOf(CodeTab)];
@@ -168,5 +171,6 @@ namespace MechForge
             }
             
         }
+
     }
 }
