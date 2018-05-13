@@ -6,32 +6,17 @@ namespace MechForge.Fonts
 {
     public class FontFactory : IFontFactory
     {
-        private readonly Font buttonFont;
-        private readonly Font heading1;
-        private readonly Font heading2;
-
-        public Font ButtonFont => buttonFont;
-        public Font Heading1 => heading1;
-        public Font Heading2 => heading2;
-
-        public Font getFont(float size)
-        {
-            return new Font(fonts.Families[0],size);
-        }
-
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
             IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
-        private PrivateFontCollection fonts = new PrivateFontCollection();
+        private readonly PrivateFontCollection fonts = new PrivateFontCollection();
+
+        public Font BattleTechFont(float size) => new Font(fonts.Families[0], size);
 
         public FontFactory()
         {
             LoadFonts();
-
-            heading1 = new Font(fonts.Families[0], 20.0F);
-            heading2 = new Font(fonts.Families[0], 10.0F);
-            buttonFont = new Font(fonts.Families[0], 8.0F);
         }
 
         private void LoadFonts()

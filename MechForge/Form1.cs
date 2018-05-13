@@ -89,14 +89,14 @@ namespace MechForge
 
         private void InitializeFonts()
         {
-            lblHeading.Font = fontFactory.Heading1;
-            btnSave.Font = fontFactory.ButtonFont;
-            LoadButton.Font = fontFactory.ButtonFont;
-            EditorTab.Font = fontFactory.ButtonFont;
-            DesignerTab.Font = fontFactory.ButtonFont;
-            lblDataFolder.Font = fontFactory.Heading2;
-            lblResourceBrowser.Font = fontFactory.Heading2;
-            lblSelectedCategory.Font = fontFactory.ButtonFont;
+            lblHeading.Font = fontFactory.BattleTechFont(20F);
+            btnSave.Font = fontFactory.BattleTechFont(8F);
+            LoadButton.Font = fontFactory.BattleTechFont(8F);
+            EditorTab.Font = fontFactory.BattleTechFont(8F);
+            DesignerTab.Font = fontFactory.BattleTechFont(8F);
+            lblDataFolder.Font = fontFactory.BattleTechFont(10F);
+            lblResourceBrowser.Font = fontFactory.BattleTechFont(10F);
+            lblSelectedCategory.Font = fontFactory.BattleTechFont(8F);
         }
 
     }
