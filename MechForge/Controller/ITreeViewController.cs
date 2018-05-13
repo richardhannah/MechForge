@@ -16,7 +16,7 @@ namespace MechForge.Controller
             set;
         }
         FastColoredTextBox Editor { set; }
-        TreeNode SelectedNode { get; }
+        TreeNode SelectedNode { get; set; }
 
         void Clear();
         void Build();

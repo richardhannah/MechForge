@@ -51,12 +51,14 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.EditorTab.SuspendLayout();
             this.CodeTab.SuspendLayout();
             this.DesignerTab.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FolderTextBox
@@ -116,8 +118,7 @@
             this.fastColoredTextBox1.Size = new System.Drawing.Size(1258, 408);
             this.fastColoredTextBox1.TabIndex = 4;
             this.fastColoredTextBox1.Zoom = 100;
-            this.fastColoredTextBox1.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fastColoredTextBox1_TextChanged);
-            this.fastColoredTextBox1.Load += new System.EventHandler(this.fastColoredTextBox1_Load);
+            this.fastColoredTextBox1.KeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.fastColoredTextBox1_KeyPressed);
             // 
             // EditorTab
             // 
@@ -239,7 +240,7 @@
             this.lblResourceBrowser.AutoSize = true;
             this.lblResourceBrowser.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResourceBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblResourceBrowser.Location = new System.Drawing.Point(23, 140);
+            this.lblResourceBrowser.Location = new System.Drawing.Point(3, 10);
             this.lblResourceBrowser.Name = "lblResourceBrowser";
             this.lblResourceBrowser.Size = new System.Drawing.Size(196, 19);
             this.lblResourceBrowser.TabIndex = 10;
@@ -261,10 +262,11 @@
             this.lblSelectedCategory.AutoSize = true;
             this.lblSelectedCategory.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectedCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSelectedCategory.Location = new System.Drawing.Point(253, 140);
+            this.lblSelectedCategory.Location = new System.Drawing.Point(233, 13);
             this.lblSelectedCategory.Name = "lblSelectedCategory";
-            this.lblSelectedCategory.Size = new System.Drawing.Size(0, 19);
+            this.lblSelectedCategory.Size = new System.Drawing.Size(130, 19);
             this.lblSelectedCategory.TabIndex = 12;
+            this.lblSelectedCategory.Text = "subcategory";
             // 
             // toolStrip1
             // 
@@ -296,16 +298,24 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblResourceBrowser);
+            this.panel1.Controls.Add(this.lblSelectedCategory);
+            this.panel1.Location = new System.Drawing.Point(14, 144);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1384, 35);
+            this.panel1.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1648, 655);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.lblSelectedCategory);
             this.Controls.Add(this.lblHeading);
-            this.Controls.Add(this.lblResourceBrowser);
             this.Controls.Add(this.lblDataFolder);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.EditorTab);
@@ -325,6 +335,8 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,6 +365,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

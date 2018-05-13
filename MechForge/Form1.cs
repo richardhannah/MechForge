@@ -24,9 +24,7 @@ namespace MechForge
         private readonly IFontFactory fontFactory;
         private readonly IFileSystemDAO fileSystemDao;
         private readonly IFileNameTranslator fileNameTranslator;
-
-        private bool textChanged;
-        private string originalText;
+        private bool fileModified = false;
 
         public Form1()
         {
@@ -46,11 +44,6 @@ namespace MechForge
             EditorTab.TabPages.Remove(DesignerTab);
         }
 
-        private void onFileLoadedHandler(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoadButton_Click(object sender, EventArgs e)
         {
             treeViewController.Clear();
@@ -60,10 +53,13 @@ namespace MechForge
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine("saving");
             string textToSave = fastColoredTextBox1.Text;
             try
             {
                 File.WriteAllText(treeViewController.SelectedNode.Name, textToSave);
+                fileModified = false;
+                setEditorTabModified(false);
             }
             catch (NullReferenceException ex)
             {
@@ -74,9 +70,12 @@ namespace MechForge
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Name.EndsWith("json"))
-            {
-                LoadFile(e.Node.Name);
+            setEditorTabModified(false);
+
+            treeViewController.SelectedNode = e.Node;
+
+            if (e.Node.Name.EndsWith("json")){
+                fastColoredTextBox1.Text = LoadFile(e.Node.Name);
             }
 
             string labelText = buildCategory(e.Node);
@@ -85,6 +84,10 @@ namespace MechForge
             if (category.TrimEnd(' ') == "weapon" && !EditorTab.TabPages.Contains(DesignerTab))
             {
                 EditorTab.TabPages.Add(DesignerTab);
+            }
+            else if(category.TrimEnd(' ') != "weapon")
+            {
+                EditorTab.TabPages.Remove(DesignerTab);
             }
         }
 
@@ -125,39 +128,45 @@ namespace MechForge
             btnSave_Click(sender, e);
         }
 
-        private void fastColoredTextBox1_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        private void setEditorTabModified(bool modified)
         {
-            Debug.WriteLine("TextChanged Event fired");
-//            if (!fastColoredTextBox1.Text.Equals(originalText) || fastColoredTextBox1.Text != "")
-//            {
-//                textChanged = true;
-//                TabPage codeTab = EditorTab.TabPages[EditorTab.TabPages.IndexOf(CodeTab)];
-//                codeTab.Text = codeTab.Text + "*";
-//            }
+            TabPage codeTab = EditorTab.TabPages[EditorTab.TabPages.IndexOf(CodeTab)];
+            if (modified) { 
+                codeTab.Text = codeTab.Text + "*";
+            }
+            else
+            {
+                codeTab.Text = codeTab.Text.TrimEnd('*');
+            }
         }
 
-        private void fastColoredTextBox1_Load(object sender, EventArgs e)
-        {
-            Debug.WriteLine("Load event fired");
-//            originalText = fastColoredTextBox1.Text;
-        }
+        
 
-        private bool LoadFile(string filename)
+        private string LoadFile(string filename)
         {
             string text = File.ReadAllText(filename);
 
             try
             {
                 string formatted = JToken.Parse(text).ToString(Formatting.Indented);
-                fastColoredTextBox1.Text = formatted;
+                
             }
             catch (JsonReaderException exception)
             {
-                return false;
+                return "unable to format json";
             }
 
-            return true;
+            return text;
         }
 
+        private void fastColoredTextBox1_KeyPressed(object sender, KeyPressEventArgs e)
+        {
+            if (!fileModified)
+            {
+                setEditorTabModified(true);
+                fileModified = true;
+            }
+            
+        }
     }
 }

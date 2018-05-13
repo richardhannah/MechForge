@@ -19,16 +19,12 @@ namespace MechForge.Controller
         private TreeViewController treeViewModel;
         private FastColoredTextBox editor;
         private TreeView treeView;
-        private TreeNode selectedNode;
         private IFileNameTranslator fileNameTranslator;
 
         public DirectoryInfo DirectoryInfo { set { directoryInfo = value; } }
         public TreeView TreeView { set { treeView = value; } }
         public FastColoredTextBox Editor { set { editor = value; } }
-        public TreeNode SelectedNode
-        {
-            get { return selectedNode; }
-        }
+        public TreeNode SelectedNode { get; set; }
 
         public TreeViewController(DirectoryInfo directoryInfo,TreeView treeView,IFileNameTranslator fileNameTranslator)
         {
