@@ -18,6 +18,8 @@ namespace MechForge
 {
     public partial class Form1 : Form
     {
+        private const string ROOT_DIRECTORY_NAME = "data";
+
         private readonly ITreeViewController treeViewController;
         private readonly IFontFactory fontFactory;
         private readonly IFileSystemDAO fileSystemDao;
@@ -67,11 +69,16 @@ namespace MechForge
         {
             string labelText = buildCategory(e.Node);
             lblSelectedCategory.Text = labelText.Substring(0,labelText.Length - 3);
+            string category = labelText.Split('/')[0];
+            if (category.TrimEnd(' ') == "weapon" && !EditorTab.TabPages.Contains(DesignerTab))
+            {
+                EditorTab.TabPages.Add(DesignerTab);
+            }
         }
 
         private string buildCategory(TreeNode node, string labelText = "")
         {
-            if (node.Text == "data")
+            if (node.Text == ROOT_DIRECTORY_NAME)
             {
                 return labelText;
             }
