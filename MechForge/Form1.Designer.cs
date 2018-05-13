@@ -37,7 +37,6 @@
             this.CodeTab = new System.Windows.Forms.TabPage();
             this.DesignerTab = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,11 +46,17 @@
             this.lblResourceBrowser = new System.Windows.Forms.Label();
             this.lblHeading = new System.Windows.Forms.Label();
             this.lblSelectedCategory = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.EditorTab.SuspendLayout();
             this.CodeTab.SuspendLayout();
             this.DesignerTab.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FolderTextBox
@@ -59,7 +64,7 @@
             this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderTextBox.BackColor = System.Drawing.SystemColors.Menu;
-            this.FolderTextBox.Location = new System.Drawing.Point(177, 67);
+            this.FolderTextBox.Location = new System.Drawing.Point(186, 112);
             this.FolderTextBox.Name = "FolderTextBox";
             this.FolderTextBox.Size = new System.Drawing.Size(1311, 18);
             this.FolderTextBox.TabIndex = 0;
@@ -70,7 +75,7 @@
             this.LoadButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LoadButton.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LoadButton.Location = new System.Drawing.Point(1506, 65);
+            this.LoadButton.Location = new System.Drawing.Point(1515, 110);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(96, 19);
             this.LoadButton.TabIndex = 1;
@@ -101,16 +106,16 @@
             this.fastColoredTextBox1.CharWidth = 8;
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(0, 3);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
             this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
             this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(1258, 389);
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(1258, 408);
             this.fastColoredTextBox1.TabIndex = 4;
             this.fastColoredTextBox1.Zoom = 100;
+            this.fastColoredTextBox1.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fastColoredTextBox1_TextChanged);
             // 
             // EditorTab
             // 
@@ -120,10 +125,10 @@
             this.EditorTab.Controls.Add(this.CodeTab);
             this.EditorTab.Controls.Add(this.DesignerTab);
             this.EditorTab.Font = new System.Drawing.Font("Copperplate Gothic Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditorTab.Location = new System.Drawing.Point(367, 118);
+            this.EditorTab.Location = new System.Drawing.Point(367, 185);
             this.EditorTab.Name = "EditorTab";
             this.EditorTab.SelectedIndex = 0;
-            this.EditorTab.Size = new System.Drawing.Size(1267, 410);
+            this.EditorTab.Size = new System.Drawing.Size(1267, 429);
             this.EditorTab.TabIndex = 5;
             // 
             // CodeTab
@@ -132,7 +137,7 @@
             this.CodeTab.Location = new System.Drawing.Point(4, 21);
             this.CodeTab.Name = "CodeTab";
             this.CodeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CodeTab.Size = new System.Drawing.Size(1259, 385);
+            this.CodeTab.Size = new System.Drawing.Size(1259, 404);
             this.CodeTab.TabIndex = 0;
             this.CodeTab.Text = "Code View";
             this.CodeTab.UseVisualStyleBackColor = true;
@@ -143,7 +148,7 @@
             this.DesignerTab.Location = new System.Drawing.Point(4, 21);
             this.DesignerTab.Name = "DesignerTab";
             this.DesignerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DesignerTab.Size = new System.Drawing.Size(1259, 385);
+            this.DesignerTab.Size = new System.Drawing.Size(1259, 404);
             this.DesignerTab.TabIndex = 1;
             this.DesignerTab.Text = "Designer View";
             this.DesignerTab.UseVisualStyleBackColor = true;
@@ -156,20 +161,6 @@
             this.label1.Size = new System.Drawing.Size(251, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "Coming... Whenever I have time to do this";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnSave.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnSave.Location = new System.Drawing.Point(933, 540);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(87, 19);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // menuStrip1
             // 
@@ -186,6 +177,9 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.saveAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -207,9 +201,9 @@
             this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.BackColor = System.Drawing.SystemColors.Menu;
-            this.treeView1.Location = new System.Drawing.Point(14, 118);
+            this.treeView1.Location = new System.Drawing.Point(14, 185);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(346, 410);
+            this.treeView1.Size = new System.Drawing.Size(346, 429);
             this.treeView1.TabIndex = 8;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -218,7 +212,7 @@
             this.lblDataFolder.AutoSize = true;
             this.lblDataFolder.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblDataFolder.Location = new System.Drawing.Point(14, 65);
+            this.lblDataFolder.Location = new System.Drawing.Point(23, 110);
             this.lblDataFolder.Name = "lblDataFolder";
             this.lblDataFolder.Size = new System.Drawing.Size(130, 19);
             this.lblDataFolder.TabIndex = 9;
@@ -229,7 +223,7 @@
             this.lblResourceBrowser.AutoSize = true;
             this.lblResourceBrowser.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResourceBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblResourceBrowser.Location = new System.Drawing.Point(14, 95);
+            this.lblResourceBrowser.Location = new System.Drawing.Point(23, 140);
             this.lblResourceBrowser.Name = "lblResourceBrowser";
             this.lblResourceBrowser.Size = new System.Drawing.Size(196, 19);
             this.lblResourceBrowser.TabIndex = 10;
@@ -240,7 +234,7 @@
             this.lblHeading.AutoSize = true;
             this.lblHeading.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblHeading.Location = new System.Drawing.Point(12, 29);
+            this.lblHeading.Location = new System.Drawing.Point(21, 74);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(156, 27);
             this.lblHeading.TabIndex = 11;
@@ -251,23 +245,67 @@
             this.lblSelectedCategory.AutoSize = true;
             this.lblSelectedCategory.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectedCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSelectedCategory.Location = new System.Drawing.Point(244, 95);
+            this.lblSelectedCategory.Location = new System.Drawing.Point(253, 140);
             this.lblSelectedCategory.Name = "lblSelectedCategory";
             this.lblSelectedCategory.Size = new System.Drawing.Size(0, 19);
             this.lblSelectedCategory.TabIndex = 12;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1648, 25);
+            this.toolStrip1.TabIndex = 13;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::MechForge.Properties.Resources.icon_save;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::MechForge.Properties.Resources.SaveAll_16x;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAllToolStripMenuItem
+            // 
+            this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAllToolStripMenuItem.Text = "Save all";
+            this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1648, 569);
+            this.ClientSize = new System.Drawing.Size(1648, 655);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lblSelectedCategory);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.lblResourceBrowser);
             this.Controls.Add(this.lblDataFolder);
             this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.EditorTab);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.FolderTextBox);
@@ -283,6 +321,8 @@
             this.DesignerTab.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,7 +337,6 @@
         private System.Windows.Forms.TabPage CodeTab;
         private System.Windows.Forms.TabPage DesignerTab;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
@@ -307,6 +346,11 @@
         private System.Windows.Forms.Label lblResourceBrowser;
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Label lblSelectedCategory;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
     }
 }
 

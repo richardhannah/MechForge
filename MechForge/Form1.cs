@@ -24,6 +24,7 @@ namespace MechForge
         private readonly IFileNameTranslator fileNameTranslator;
 
         private DataCategory currentCategory;
+        private bool textChanged;
 
         public Form1()
         {
@@ -52,11 +53,25 @@ namespace MechForge
         private void btnSave_Click(object sender, EventArgs e)
         {
             string textToSave = fastColoredTextBox1.Text;
-            File.WriteAllText(treeViewController.SelectedNode.Name, textToSave);
+            try
+            {
+                File.WriteAllText(treeViewController.SelectedNode.Name, textToSave);
+            }
+            catch (NullReferenceException ex)
+            {
+                //swallow for now
+            }
+            
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (textChanged)
+            {
+                //MessageBox.Show("text changed");
+
+            }
+
             currentCategory = ParseDataCategory(e);
             lblSelectedCategory.Text = currentCategory.ToString();
 
@@ -102,7 +117,6 @@ namespace MechForge
         private void InitializeFonts()
         {
             lblHeading.Font = fontFactory.BattleTechFont(20F);
-            btnSave.Font = fontFactory.BattleTechFont(8F);
             LoadButton.Font = fontFactory.BattleTechFont(8F);
             EditorTab.Font = fontFactory.BattleTechFont(8F);
             DesignerTab.Font = fontFactory.BattleTechFont(8F);
@@ -111,5 +125,24 @@ namespace MechForge
             lblSelectedCategory.Font = fontFactory.BattleTechFont(8F);
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(sender, e);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(sender, e);
+        }
+
+        private void saveAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(sender, e);
+        }
+
+        private void fastColoredTextBox1_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        {
+            textChanged = true;
+        }
     }
 }
