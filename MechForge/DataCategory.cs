@@ -53,6 +53,7 @@
         upgrades,
         vehicle,
         vehicleChassis,
-        weapon
+        weapon,
+        Traits
     }
 }

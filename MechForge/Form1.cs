@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Drawing;
 using System.Drawing.Text;
 using MechForge.Controller;
+using MechForge.Data;
 using MechForge.Fonts;
 using MechForge.Translator;
 
@@ -17,26 +18,29 @@ namespace MechForge
 {
     public partial class Form1 : Form
     {
-        private ITreeViewController treeViewController;
-        private DataCategory currentCategory;
-        private IFontFactory fontFactory;
+        private readonly ITreeViewController treeViewController;
+        private readonly IFontFactory fontFactory;
+        private readonly IFileSystemDAO fileSystemDao;
+        private readonly IFileNameTranslator fileNameTranslator;
 
+        private DataCategory currentCategory;
 
         public Form1()
         {
             InitializeComponent();
+
             fontFactory = new FontFactory();
+            fileSystemDao = new FileSystemDAO();
+            fileNameTranslator = new FilenameTranslator();
+            treeViewController = new TreeViewController(fileSystemDao.DefaultDirectoryInfo, treeView1, fileNameTranslator);
+
             InitializeFonts();
 
-            string defaultDirectory = ConfigurationManager.AppSettings["defaultDataDir"];
-            treeViewController = new TreeViewController(new DirectoryInfo(defaultDirectory),treeView1,new FilenameTranslator() );
-            FolderTextBox.Text = defaultDirectory;
+            FolderTextBox.Text = fileSystemDao.DefaultDirectoryInfo.FullName;
             treeViewController.Editor = fastColoredTextBox1;
 
             EditorTab.TabPages.Remove(DesignerTab);
         }
-
-        
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
@@ -72,7 +76,15 @@ namespace MechForge
 
         private DataCategory ParseDataCategory(TreeViewEventArgs e)
         {
-            return e.Node.Parent.Text == "data" ? TextToEnum(e.Node.Text) : TextToEnum(e.Node.Parent.Text);
+            try
+            {
+                return e.Node.Parent.Text == "data" ? TextToEnum(e.Node.Text) : TextToEnum(e.Node.Parent.Text);
+            }
+            catch (NullReferenceException ex)
+            {
+                return DataCategory.undefined;
+            }
+            
         }
 
         private DataCategory TextToEnum(string text)
