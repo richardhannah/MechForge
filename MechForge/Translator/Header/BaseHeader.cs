@@ -5,7 +5,7 @@ namespace MechForge.Translator.Header
 {
     public abstract class BaseHeader
     {
-        
+
         protected DecodedFileName decodedFileName;
 
         public virtual string Filename
@@ -14,7 +14,6 @@ namespace MechForge.Translator.Header
             {
                 return decodedFileName.Filename;
             }
-            
         }
 
         public virtual string DisplayName
@@ -41,8 +40,9 @@ namespace MechForge.Translator.Header
                     return decodedFileName.Filename;
                 }
 
-                return Filename;
+                return itemId.Length > 0 ? itemId : decodedFileName.Filename;
             }
+
         }
 
         public BaseHeader(DecodedFileName decodedFileName)

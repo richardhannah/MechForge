@@ -6,7 +6,7 @@
         {
         }
 
-        public virtual string ItemId
+        public override string DisplayName
         {
             get
             {
@@ -18,11 +18,11 @@
                 return Filename;
             }
         }
-        }
-
-
-
-
-
-
     }
+
+
+
+
+
+
+}
