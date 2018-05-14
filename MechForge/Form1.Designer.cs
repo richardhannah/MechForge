@@ -54,6 +54,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.EditorTab.SuspendLayout();
             this.CodeTab.SuspendLayout();
@@ -61,6 +62,7 @@
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // FolderTextBox
@@ -68,10 +70,12 @@
             this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderTextBox.BackColor = System.Drawing.SystemColors.Menu;
-            this.FolderTextBox.Location = new System.Drawing.Point(186, 112);
+            this.FolderTextBox.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.FolderTextBox.Location = new System.Drawing.Point(151, 6);
             this.FolderTextBox.Name = "FolderTextBox";
-            this.FolderTextBox.Size = new System.Drawing.Size(1311, 18);
+            this.FolderTextBox.Size = new System.Drawing.Size(883, 18);
             this.FolderTextBox.TabIndex = 0;
+            this.FolderTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FolderTextBox_KeyUp);
             // 
             // LoadButton
             // 
@@ -79,11 +83,11 @@
             this.LoadButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LoadButton.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LoadButton.Location = new System.Drawing.Point(1515, 110);
+            this.LoadButton.Image = global::MechForge.Properties.Resources.Folder_16x;
+            this.LoadButton.Location = new System.Drawing.Point(1031, 5);
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(96, 19);
+            this.LoadButton.Size = new System.Drawing.Size(22, 19);
             this.LoadButton.TabIndex = 1;
-            this.LoadButton.Text = "Load";
             this.LoadButton.UseVisualStyleBackColor = false;
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
@@ -238,7 +242,7 @@
             this.lblDataFolder.AutoSize = true;
             this.lblDataFolder.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblDataFolder.Location = new System.Drawing.Point(23, 110);
+            this.lblDataFolder.Location = new System.Drawing.Point(3, 5);
             this.lblDataFolder.Name = "lblDataFolder";
             this.lblDataFolder.Size = new System.Drawing.Size(130, 19);
             this.lblDataFolder.TabIndex = 9;
@@ -260,7 +264,7 @@
             this.lblHeading.AutoSize = true;
             this.lblHeading.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblHeading.Location = new System.Drawing.Point(21, 74);
+            this.lblHeading.Location = new System.Drawing.Point(16, 71);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(156, 27);
             this.lblHeading.TabIndex = 11;
@@ -327,20 +331,28 @@
             this.toolStripButton3.Text = "toolStripButton3";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblDataFolder);
+            this.panel2.Controls.Add(this.FolderTextBox);
+            this.panel2.Controls.Add(this.LoadButton);
+            this.panel2.Location = new System.Drawing.Point(290, 74);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1161, 32);
+            this.panel2.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1648, 655);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lblHeading);
-            this.Controls.Add(this.lblDataFolder);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.EditorTab);
-            this.Controls.Add(this.LoadButton);
-            this.Controls.Add(this.FolderTextBox);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
@@ -357,6 +369,8 @@
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,6 +402,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

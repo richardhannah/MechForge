@@ -46,12 +46,27 @@ namespace MechForge
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            treeViewController.DirectoryInfo = new DirectoryInfo(FolderTextBox.Text);
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.SelectedPath = FolderTextBox.Text;
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    FolderTextBox.Text = fbd.SelectedPath;
+                }
+            }
+
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            treeViewController.DirectoryInfo = fileSystemDao.getDirectoryInfoForFileName(FolderTextBox.Text);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("saving");
             string textToSave = fastColoredTextBox1.Text;
             try
             {
@@ -76,7 +91,7 @@ namespace MechForge
                 fastColoredTextBox1.Text = LoadFile(e.Node.Name);
             }
 
-            string labelText = buildCategory(e.Node);
+            string labelText = BuildCategory(e.Node);
             lblSelectedCategory.Text = labelText.Substring(0,labelText.Length - 3);
             string category = labelText.Split('/')[0];
             if (category.TrimEnd(' ') == "weapon" && !EditorTab.TabPages.Contains(DesignerTab))
@@ -89,7 +104,7 @@ namespace MechForge
             }
         }
 
-        private string buildCategory(TreeNode node, string labelText = "")
+        private string BuildCategory(TreeNode node, string labelText = "")
         {
             if (node.Text == ROOT_DIRECTORY_NAME)
             {
@@ -97,7 +112,7 @@ namespace MechForge
             }
             
             labelText =$"{node.Text} / {labelText}";
-            return buildCategory(node.Parent, labelText);
+            return BuildCategory(node.Parent, labelText);
         }
 
         private void InitializeFonts()
@@ -143,8 +158,6 @@ namespace MechForge
             }
         }
 
-        
-
         private string LoadFile(string filename)
         {
             string text = File.ReadAllText(filename);
@@ -175,6 +188,14 @@ namespace MechForge
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             MessageBox.Show("not implemented yet");
+        }
+
+        private void FolderTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyData & Keys.Enter) == Keys.Enter)
+            {
+                LoadData();
+            }
         }
     }
 }
