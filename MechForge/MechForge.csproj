@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="Data\FileSystemDAO.cs" />
     <Compile Include="Data\IFileSystemDAO.cs" />
+    <Compile Include="Domain\Chassis.cs" />
+    <Compile Include="Domain\Weapon.cs" />
     <Compile Include="Fonts\FontFactory.cs" />
     <Compile Include="Fonts\IFontFactory.cs" />
     <Compile Include="Form1.cs">
@@ -68,6 +70,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResourceMapper.cs" />
     <Compile Include="Translator\DecodedFileName.cs" />
     <Compile Include="Translator\FileNameDecoder.cs" />
     <Compile Include="Translator\FilenameTranslator.cs" />
@@ -82,6 +85,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controller\ITreeViewController.cs" />
     <Compile Include="Controller\TreeViewController.cs" />
+    <Compile Include="UserControls\ChassisDesignerControlSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DesignerControl.cs" />
+    <Compile Include="UserControls\IDesignerControl.cs" />
+    <Compile Include="UserControls\WeaponDesignerControlSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +106,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\ChassisDesignerControlSet.resx">
+      <DependentUpon>ChassisDesignerControlSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\WeaponDesignerControlSet.resx">
+      <DependentUpon>WeaponDesignerControlSet.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

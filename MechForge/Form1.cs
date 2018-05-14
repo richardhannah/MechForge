@@ -9,10 +9,13 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Reflection;
 using MechForge.Controller;
 using MechForge.Data;
+using MechForge.Domain;
 using MechForge.Fonts;
 using MechForge.Translator;
+using MechForge.UserControls;
 
 namespace MechForge
 {
@@ -26,6 +29,13 @@ namespace MechForge
         private readonly IFileNameTranslator fileNameTranslator;
         private bool fileModified = false;
 
+        private readonly Dictionary<string, Type> designAbleResources = new Dictionary<string, Type>()
+        {
+            {"weapon", typeof(Weapon)},
+            {"chassis",typeof(Chassis)} 
+        };
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -34,26 +44,24 @@ namespace MechForge
             fileSystemDao = new FileSystemDAO();
             fileNameTranslator = new FilenameTranslator();
             treeViewController = new TreeViewController(fileSystemDao.DefaultDirectoryInfo, treeView1, fileNameTranslator);
-            
 
             InitializeFonts();
 
             FolderTextBox.Text = fileSystemDao.DefaultDirectoryInfo.FullName;
             treeViewController.Editor = fastColoredTextBox1;
-
             EditorTab.TabPages.Remove(DesignerTab);
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            using (var fbd = new FolderBrowserDialog())
+            using (var fileBrowserDialog = new FolderBrowserDialog())
             {
-                fbd.SelectedPath = FolderTextBox.Text;
-                DialogResult result = fbd.ShowDialog();
+                fileBrowserDialog.SelectedPath = FolderTextBox.Text;
+                DialogResult result = fileBrowserDialog.ShowDialog();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fileBrowserDialog.SelectedPath))
                 {
-                    FolderTextBox.Text = fbd.SelectedPath;
+                    FolderTextBox.Text = fileBrowserDialog.SelectedPath;
                 }
             }
 
@@ -78,30 +86,49 @@ namespace MechForge
             {
                 //swallow for now
             }
-            
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             setEditorTabModified(false);
-
             treeViewController.SelectedNode = e.Node;
 
             if (e.Node.Name.EndsWith("json")){
                 fastColoredTextBox1.Text = LoadFile(e.Node.Name);
             }
+            
+            string category = SetCategoryLabel(e.Node).TrimEnd(' ');
 
-            string labelText = BuildCategory(e.Node);
-            lblSelectedCategory.Text = labelText.Substring(0,labelText.Length - 3);
-            string category = labelText.Split('/')[0];
-            if (category.TrimEnd(' ') == "weapon" && !EditorTab.TabPages.Contains(DesignerTab))
-            {
+            EditorTab.TabPages.Remove(DesignerTab);
+
+            if (designAbleResources.ContainsKey(category)){
+                
+                DesignerTab = createDesignerTabPage(category);
                 EditorTab.TabPages.Add(DesignerTab);
             }
-            else if(category.TrimEnd(' ') != "weapon")
-            {
-                EditorTab.TabPages.Remove(DesignerTab);
-            }
+        }
+
+        private TabPage createDesignerTabPage(string category)
+        {
+            TabPage tabPage = new TabPage("Designer View");
+            tabPage.Controls.Add(getControlSet(category));
+            return tabPage;
+        }
+
+        private UserControl getControlSet(string category)
+        {
+            Type designerType = designAbleResources[category];
+            Type genericType = typeof(DesignerControl<>);
+            Type customListType = genericType.MakeGenericType(designerType);
+            IDesignerControl designerControl = (IDesignerControl)Activator.CreateInstance(customListType);
+            return designerControl.ControlSet;
+        }
+
+        private string SetCategoryLabel(TreeNode node)
+        {
+            string labelText = BuildCategory(node);
+            lblSelectedCategory.Text = labelText.Substring(0, labelText.Length - 3);
+            return labelText.Split('/')[0];
         }
 
         private string BuildCategory(TreeNode node, string labelText = "")
@@ -182,7 +209,6 @@ namespace MechForge
                 setEditorTabModified(true);
                 fileModified = true;
             }
-            
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -197,5 +223,7 @@ namespace MechForge
                 LoadData();
             }
         }
+
+        
     }
 }

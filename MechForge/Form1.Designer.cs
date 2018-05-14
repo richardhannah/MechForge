@@ -50,10 +50,10 @@
             this.lblHeading = new System.Windows.Forms.Label();
             this.lblSelectedCategory = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.EditorTab.SuspendLayout();
@@ -75,6 +75,7 @@
             this.FolderTextBox.Name = "FolderTextBox";
             this.FolderTextBox.Size = new System.Drawing.Size(883, 18);
             this.FolderTextBox.TabIndex = 0;
+            
             this.FolderTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FolderTextBox_KeyUp);
             // 
             // LoadButton
@@ -114,6 +115,7 @@
             this.fastColoredTextBox1.CharWidth = 8;
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(0, 3);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
@@ -293,15 +295,6 @@
             this.toolStrip1.TabIndex = 13;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lblResourceBrowser);
-            this.panel1.Controls.Add(this.lblSelectedCategory);
-            this.panel1.Location = new System.Drawing.Point(14, 144);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1384, 35);
-            this.panel1.TabIndex = 14;
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -330,6 +323,15 @@
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblResourceBrowser);
+            this.panel1.Controls.Add(this.lblSelectedCategory);
+            this.panel1.Location = new System.Drawing.Point(14, 144);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1384, 35);
+            this.panel1.TabIndex = 14;
             // 
             // panel2
             // 
