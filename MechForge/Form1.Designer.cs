@@ -75,7 +75,6 @@
             this.FolderTextBox.Name = "FolderTextBox";
             this.FolderTextBox.Size = new System.Drawing.Size(883, 18);
             this.FolderTextBox.TabIndex = 0;
-            
             this.FolderTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FolderTextBox_KeyUp);
             // 
             // LoadButton
@@ -122,7 +121,7 @@
             this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
             this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(1258, 408);
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(1258, 406);
             this.fastColoredTextBox1.TabIndex = 4;
             this.fastColoredTextBox1.Zoom = 100;
             this.fastColoredTextBox1.KeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.fastColoredTextBox1_KeyPressed);
@@ -134,7 +133,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditorTab.Controls.Add(this.CodeTab);
             this.EditorTab.Controls.Add(this.DesignerTab);
-            this.EditorTab.Font = new System.Drawing.Font("Copperplate Gothic Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditorTab.Font = new System.Drawing.Font("Battletech Oldstyle", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditorTab.Location = new System.Drawing.Point(367, 185);
             this.EditorTab.Name = "EditorTab";
             this.EditorTab.SelectedIndex = 0;
@@ -144,17 +143,19 @@
             // CodeTab
             // 
             this.CodeTab.Controls.Add(this.fastColoredTextBox1);
-            this.CodeTab.Location = new System.Drawing.Point(4, 21);
+            this.CodeTab.Location = new System.Drawing.Point(4, 23);
             this.CodeTab.Name = "CodeTab";
             this.CodeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CodeTab.Size = new System.Drawing.Size(1259, 404);
+            this.CodeTab.Size = new System.Drawing.Size(1259, 402);
             this.CodeTab.TabIndex = 0;
             this.CodeTab.Text = "Code View";
             this.CodeTab.UseVisualStyleBackColor = true;
             // 
             // DesignerTab
             // 
+            this.DesignerTab.AutoScroll = true;
             this.DesignerTab.Controls.Add(this.label1);
+            this.DesignerTab.Font = new System.Drawing.Font("Lucida Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DesignerTab.Location = new System.Drawing.Point(4, 21);
             this.DesignerTab.Name = "DesignerTab";
             this.DesignerTab.Padding = new System.Windows.Forms.Padding(3);
@@ -168,7 +169,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(503, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(251, 12);
+            this.label1.Size = new System.Drawing.Size(231, 14);
             this.label1.TabIndex = 0;
             this.label1.Text = "Coming... Whenever I have time to do this";
             // 
@@ -242,44 +243,44 @@
             // lblDataFolder
             // 
             this.lblDataFolder.AutoSize = true;
-            this.lblDataFolder.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataFolder.Font = new System.Drawing.Font("Battletech Oldstyle", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblDataFolder.Location = new System.Drawing.Point(3, 5);
             this.lblDataFolder.Name = "lblDataFolder";
-            this.lblDataFolder.Size = new System.Drawing.Size(130, 19);
+            this.lblDataFolder.Size = new System.Drawing.Size(147, 16);
             this.lblDataFolder.TabIndex = 9;
             this.lblDataFolder.Text = "Data Folder";
             // 
             // lblResourceBrowser
             // 
             this.lblResourceBrowser.AutoSize = true;
-            this.lblResourceBrowser.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResourceBrowser.Font = new System.Drawing.Font("Battletech Oldstyle", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResourceBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblResourceBrowser.Location = new System.Drawing.Point(3, 10);
             this.lblResourceBrowser.Name = "lblResourceBrowser";
-            this.lblResourceBrowser.Size = new System.Drawing.Size(196, 19);
+            this.lblResourceBrowser.Size = new System.Drawing.Size(228, 16);
             this.lblResourceBrowser.TabIndex = 10;
             this.lblResourceBrowser.Text = "Resource Browser:";
             // 
             // lblHeading
             // 
             this.lblHeading.AutoSize = true;
-            this.lblHeading.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.Font = new System.Drawing.Font("Battletech Oldstyle", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblHeading.Location = new System.Drawing.Point(16, 71);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(156, 27);
+            this.lblHeading.Size = new System.Drawing.Size(250, 30);
             this.lblHeading.TabIndex = 11;
             this.lblHeading.Text = "MechForge";
             // 
             // lblSelectedCategory
             // 
             this.lblSelectedCategory.AutoSize = true;
-            this.lblSelectedCategory.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectedCategory.Font = new System.Drawing.Font("Battletech Oldstyle", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectedCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblSelectedCategory.Location = new System.Drawing.Point(233, 13);
             this.lblSelectedCategory.Name = "lblSelectedCategory";
-            this.lblSelectedCategory.Size = new System.Drawing.Size(130, 19);
+            this.lblSelectedCategory.Size = new System.Drawing.Size(125, 12);
             this.lblSelectedCategory.TabIndex = 12;
             this.lblSelectedCategory.Text = "subcategory";
             // 

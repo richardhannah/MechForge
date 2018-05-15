@@ -103,25 +103,30 @@ namespace MechForge
 
             if (designAbleResources.ContainsKey(category)){
                 
-                DesignerTab = createDesignerTabPage(category);
+                DesignerTab = CreateDesignerTabPage(category);
                 EditorTab.TabPages.Add(DesignerTab);
             }
         }
 
-        private TabPage createDesignerTabPage(string category)
+        private TabPage CreateDesignerTabPage(string category)
         {
             TabPage tabPage = new TabPage("Designer View");
-            tabPage.Controls.Add(getControlSet(category));
+            tabPage.Controls.Add(GetControlSet(category));
+            tabPage.AutoScroll = true;
             return tabPage;
         }
 
-        private UserControl getControlSet(string category)
+        private UserControl GetControlSet(string category)
         {
             Type designerType = designAbleResources[category];
             Type genericType = typeof(DesignerControl<>);
             Type customListType = genericType.MakeGenericType(designerType);
             IDesignerControl designerControl = (IDesignerControl)Activator.CreateInstance(customListType);
-            return designerControl.ControlSet;
+
+            IDesignable designable = designerControl.ControlSet;
+            designable.JsonData = fastColoredTextBox1.Text;
+            
+            return (UserControl)designable;
         }
 
         private string SetCategoryLabel(TreeNode node)
@@ -147,7 +152,6 @@ namespace MechForge
             lblHeading.Font = fontFactory.BattleTechFont(20F);
             LoadButton.Font = fontFactory.BattleTechFont(8F);
             EditorTab.Font = fontFactory.BattleTechFont(8F);
-            DesignerTab.Font = fontFactory.BattleTechFont(8F);
             lblDataFolder.Font = fontFactory.BattleTechFont(10F);
             lblResourceBrowser.Font = fontFactory.BattleTechFont(10F);
             lblSelectedCategory.Font = fontFactory.BattleTechFont(8F);

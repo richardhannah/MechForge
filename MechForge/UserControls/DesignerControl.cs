@@ -7,13 +7,12 @@ namespace MechForge.UserControls
 {
     public class DesignerControl<T> : IDesignerControl
     {
-        public T Data { get; set; }
-
-        public UserControl ControlSet
+        public string Json { get; set; }
+        public IDesignable ControlSet
         {
             get
             {
-                return (UserControl)Activator.CreateInstance(controlSetLookup[typeof(T)]);
+                return (IDesignable)Activator.CreateInstance(controlSetLookup[typeof(T)]);
             }
         }
 

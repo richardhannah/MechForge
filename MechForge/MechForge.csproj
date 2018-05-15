@@ -61,6 +61,7 @@
     <Compile Include="Data\FileSystemDAO.cs" />
     <Compile Include="Data\IFileSystemDAO.cs" />
     <Compile Include="Domain\Chassis.cs" />
+    <Compile Include="Domain\Class1.cs" />
     <Compile Include="Domain\Weapon.cs" />
     <Compile Include="Fonts\FontFactory.cs" />
     <Compile Include="Fonts\IFontFactory.cs" />
@@ -89,7 +90,17 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\DesignerControl.cs" />
+    <Compile Include="UserControls\IDesignable.cs" />
     <Compile Include="UserControls\IDesignerControl.cs" />
+    <Compile Include="UserControls\TextField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TextField.Designer.cs">
+      <DependentUpon>TextField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TransparentGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\WeaponDesignerControlSet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +119,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\ChassisDesignerControlSet.resx">
       <DependentUpon>ChassisDesignerControlSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextField.resx">
+      <DependentUpon>TextField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\WeaponDesignerControlSet.resx">
       <DependentUpon>WeaponDesignerControlSet.cs</DependentUpon>
@@ -130,6 +144,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="QuickType\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Folder_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ac5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

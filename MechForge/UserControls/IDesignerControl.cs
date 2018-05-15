@@ -4,6 +4,7 @@ namespace MechForge.UserControls
 {
     public interface IDesignerControl
     {
-        UserControl ControlSet { get; }
+        string Json { get; set; }
+        IDesignable ControlSet { get; }
     }
 }
