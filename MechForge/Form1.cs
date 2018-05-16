@@ -198,12 +198,12 @@ namespace MechForge
 
             try
             {
-                string formatted = JToken.Parse(text).ToString(Formatting.Indented);
+                return JToken.Parse(text).ToString(Formatting.Indented);
                 
             }
             catch (JsonReaderException exception)
             {
-                return "unable to format json";
+                toolStripStatusLabel1.Text = "Json error detected";
             }
 
             return text;
