@@ -28,6 +28,7 @@ namespace MechForge
         private readonly IFileSystemDAO fileSystemDao;
         private readonly IFileNameTranslator fileNameTranslator;
         private bool fileModified = false;
+        private string rootBattleTechDir;
 
         private readonly Dictionary<string, Type> designAbleResources = new Dictionary<string, Type>()
         {
@@ -46,7 +47,9 @@ namespace MechForge
             treeViewController = new TreeViewController(fileSystemDao.DefaultDirectoryInfo, treeView1, fileNameTranslator);
 
             InitializeFonts();
-
+            rootBattleTechDir = fileSystemDao.DefaultDirectoryInfo.Parent.Parent.Parent.FullName;
+            Debug.WriteLine(rootBattleTechDir);
+            
             FolderTextBox.Text = fileSystemDao.DefaultDirectoryInfo.FullName;
             treeViewController.Editor = fastColoredTextBox1;
             EditorTab.TabPages.Remove(DesignerTab);
@@ -228,6 +231,9 @@ namespace MechForge
             }
         }
 
-        
+        private void modTekModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
