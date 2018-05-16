@@ -14,6 +14,7 @@ using MechForge.Controller;
 using MechForge.Data;
 using MechForge.Domain;
 using MechForge.Fonts;
+using MechForge.ModTek;
 using MechForge.Translator;
 using MechForge.UserControls;
 
@@ -27,6 +28,9 @@ namespace MechForge
         private readonly IFontFactory fontFactory;
         private readonly IFileSystemDAO fileSystemDao;
         private readonly IFileNameTranslator fileNameTranslator;
+        private readonly ModTekManager modTekManager;
+
+
         private bool fileModified = false;
         private string rootBattleTechDir;
 
@@ -37,7 +41,7 @@ namespace MechForge
         };
         
 
-        public Form1()
+        public Form1(ModTekManager modTekManager)
         {
             InitializeComponent();
 
@@ -48,7 +52,7 @@ namespace MechForge
 
             InitializeFonts();
             rootBattleTechDir = fileSystemDao.DefaultDirectoryInfo.Parent.Parent.Parent.FullName;
-            Debug.WriteLine(rootBattleTechDir);
+            
             
             FolderTextBox.Text = fileSystemDao.DefaultDirectoryInfo.FullName;
             treeViewController.Editor = fastColoredTextBox1;
@@ -98,6 +102,7 @@ namespace MechForge
 
             if (e.Node.Name.EndsWith("json") || e.Node.Name.EndsWith("csv"))
             {
+                fastColoredTextBox1.Text = LoadFile(e.Node.Name);
                 fastColoredTextBox1.Text = LoadFile(e.Node.Name);
             }
             

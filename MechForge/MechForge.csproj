@@ -71,6 +71,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModTek\ModTekManager.cs" />
     <Compile Include="ResourceMapper.cs" />
     <Compile Include="Translator\DecodedFileName.cs" />
     <Compile Include="Translator\FileNameDecoder.cs" />
