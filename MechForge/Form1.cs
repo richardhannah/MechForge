@@ -104,11 +104,17 @@ namespace MechForge
 
             EditorTab.TabPages.Remove(DesignerTab);
 
-            if (designAbleResources.ContainsKey(category)){
-                
-                DesignerTab = CreateDesignerTabPage(category);
-                EditorTab.TabPages.Add(DesignerTab);
+            if (ConfigurationManager.AppSettings["enableDesignerView"] == "true")
+            {
+
+                if (designAbleResources.ContainsKey(category))
+                {
+
+                    DesignerTab = CreateDesignerTabPage(category);
+                    EditorTab.TabPages.Add(DesignerTab);
+                }
             }
+
         }
 
         private TabPage CreateDesignerTabPage(string category)
