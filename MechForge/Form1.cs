@@ -96,7 +96,8 @@ namespace MechForge
             setEditorTabModified(false);
             treeViewController.SelectedNode = e.Node;
 
-            if (e.Node.Name.EndsWith("json")){
+            if (e.Node.Name.EndsWith("json") || e.Node.Name.EndsWith("csv"))
+            {
                 fastColoredTextBox1.Text = LoadFile(e.Node.Name);
             }
             
