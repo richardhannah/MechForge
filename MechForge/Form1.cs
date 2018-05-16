@@ -15,6 +15,7 @@ using MechForge.Data;
 using MechForge.Domain;
 using MechForge.Fonts;
 using MechForge.ModTek;
+using MechForge.ModTek.Dialog;
 using MechForge.Translator;
 using MechForge.UserControls;
 
@@ -45,6 +46,7 @@ namespace MechForge
         {
             InitializeComponent();
 
+            this.modTekManager = modTekManager;
             fontFactory = new FontFactory();
             fileSystemDao = new FileSystemDAO();
             fileNameTranslator = new FilenameTranslator();
@@ -245,7 +247,31 @@ namespace MechForge
 
         private void modTekModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (modTekManager.ModTechInstalled)
+            {
+                OpenModTekDialog();
+            }
+            else
+            {
+                MessageBox.Show("ModTek not installed");
+            }
         }
+
+        private void OpenModTekDialog()
+        {
+            Form prompt = new Form();
+            prompt.Width = 400;
+            prompt.Height = 500;
+            prompt.Text = "New ModTek Mod";
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = "New ModTek dialog" };
+            
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70 };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            
+            prompt.ShowDialog();
+        }
+
     }
 }
